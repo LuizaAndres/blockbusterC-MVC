@@ -5,8 +5,8 @@ using Controllers;
 namespace View {
     public class ClienteView {
     
-        private static void inserirCliente () {
-        int id = Controllers.ClienteController.returnCliente().Count+1;
+        public static void AddCliente () {
+        int id = Controllers.ClienteController.Clientes().Count+1;
         Console.WriteLine ("Informações sobre o cliente: ");
         Console.WriteLine ("Informe o nome: ");
         String nome = Console.ReadLine ();
@@ -25,15 +25,15 @@ namespace View {
         int qtdDias = Convert.ToInt32 (Console.ReadLine ());
 
         Cliente cliente = new Cliente (
-            clientes.Count,
+            Cliente.GetClientes().Count,
             nome,
             dtNasc,
             cpf,
             qtdDias
         );
 
-        // Insert the costumer on "db"
-        clientes.Add (cliente);
+        // colocando cliente no control
+        ClienteController.AddCliente(cliente);
     }
         public static void GetClientes(){
             
