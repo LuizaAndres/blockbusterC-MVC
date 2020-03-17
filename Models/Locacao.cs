@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Repositories;
 
 
 namespace Models {
@@ -7,19 +8,27 @@ namespace Models {
         
 
         // Criando atributos e seus getters e setters
-        public DateTime Data = DateTime.Today;
+        public DateTime Data = DateTime.Now;
         public int ID { get; set; }
         public Cliente Cliente { get; set; }
         public String DataLocacao { get; set; }
-        public String DataDevolucao { get; set; }
-        public float ValorTotal { get; set; }
         public List<Filme> Filmes = new List<Filme>();
 
         // Criando construtor
-        public Locacao(int id, Cliente cliente){
-            ID = id;
+        public Locacao(Cliente cliente, List<Filme> filmes){
+            ID = Locacao.GetLocacoes().Count;
             Cliente = cliente;
-            DataLocacao = Data.ToString().Substring(0,10);
+            Filmes = filmes;
+            cliente.locacoes.Add(this);
+        }
+        public static void addFilmeLocacao(){
+
+        }
+        public static List<Locacao> GetLocacoes () {
+            return RepositoryLocacao.Locacoes();
+        }
+        public override string ToString(){
+            return $"{Cliente} - {ID}";
         }
     }
 }

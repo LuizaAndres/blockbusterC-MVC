@@ -8,20 +8,36 @@ using Repositories;
 
 namespace Models {
     public class Filme {
-        public int ID { get; set; }
-        public string Nome { get; set; }
-
-        public Filme (int id, string nome){
-            ID = id;
-            Nome = nome;
+         public int IdFilme { get; set; }
+        /// <value>Get and Set the value of nomeFilme</value>
+        public string NomeFilme { get; set; }
+        /// <value>Get and Set the value of dtLancamento</value>
+        public DateTime DtLancamento { get; set; }
+        /// <value>Get and Set the value of sinopse</value>
+        public string Sinopse { get; set; }
+        /// <value>Get and Set the value of valor</value>
+        public double Valor { get; set; }
+        /// <value>Get and Set the value of qtdEstoque</value>
+        public int QtdEstoque { get; set; }
+        /// <value>Get and Set the value of locacoes</value>
+        public List<Locacao> VezesLocado { get; set; }
+        public Filme (int idFilme, string nomeFilme, DateTime dtLancamento, string sinopse, double valor, int qtdEstoque) {
+            IdFilme = idFilme;
+            NomeFilme = nomeFilme;
+            DtLancamento = dtLancamento;
+            Sinopse = sinopse;
+            Valor = valor;
+            QtdEstoque = qtdEstoque;
+            VezesLocado = new List<Locacao> ();
             RepositoryFilme.AddFilme(this);
         }
-        public static List<Filme> Filmes () {
+
+        public static List<Filme> GetFilmes () {
             return RepositoryFilme.Filmes();
         }
 
         public override string ToString(){
-            return $"{ID} - {Nome}";
+            return $"{IdFilme} - {NomeFilme}";
         }
     }
 }

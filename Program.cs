@@ -1,5 +1,8 @@
 using System;
 using View;
+using Models;
+//deixei aqui como uma solução rapida pra importar dados da Lista
+using Repositories;
 
 
 namespace blockbusterC_MVC
@@ -15,12 +18,12 @@ namespace blockbusterC_MVC
                 Console.WriteLine ("+-------------------------+");
                 Console.WriteLine ("| Digite a opção desejada |");
                 Console.WriteLine ("| 1 - Cadastrar Cliente   |");
-                Console.WriteLine ("| 2 - Cadastrar Filme     |");
-                Console.WriteLine ("| 3 - Cadastrar Locação   |");
+//                Console.WriteLine ("| 2 - Cadastrar Filme     |");
+//                Console.WriteLine ("| 3 - Cadastrar Locação   |");
                 Console.WriteLine ("| 4 - Listar Clientes     |");
-                Console.WriteLine ("| 5 - Consultar Cliente   |");
+//                Console.WriteLine ("| 5 - Consultar Cliente   |");
                 Console.WriteLine ("| 6 - Listar Filmes       |");
-                Console.WriteLine ("| 7 - Consultar Filme     |");
+//                Console.WriteLine ("| 7 - Consultar Filme     |");
                 Console.WriteLine ("| 8 - Consultar Locação   |");
                 Console.WriteLine ("| 9 - Importar Dados      |");
                 Console.WriteLine ("| 0 - Sair                |");
@@ -37,34 +40,34 @@ namespace blockbusterC_MVC
                         ClienteView.AddCliente();
                         break;
                     case 2:
-//                        inserirFilme ();
+//                        FilmeView.AddFilme();
                         break;
                     case 3:
 //                        inserirLocacao ();
                         break;
                     case 4:
-                        View.ClienteView.GetClientes ();
+                        View.ClienteView.GetClientes();
                         break;
                     case 5:
 //                        consultarCliente ();
                         break;
                     case 6:
-                        View.FilmeView.GetFilme ();
+                        View.FilmeView.GetFilme();
                         break;
                     case 7:
 //                        consultarFilme ();
                         break;
                     case 8:
-//                        consultarLocacao ();
+                        View.LocacaoView.GetLocacoes();
                         break;
                     case 9:
-//                        importarDados ();
+                        ClienteView.AddBasicCliente();
+                        FilmeView.AddBasicFilme();
+                        LocacaoView.AddBasicLocacao();
                         break;
                 }
             } while (opt != 0);
 
-        }
+        }   
     }
-        
 }
-
