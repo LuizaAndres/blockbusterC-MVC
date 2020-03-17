@@ -29,7 +29,7 @@ namespace Models {
             Valor = valor;
             QtdEstoque = qtdEstoque;
             VezesLocado = new List<Locacao> ();
-            RepositoryFilme.AddFilme(this);
+            
         }
 
         public static List<Filme> GetFilmes () {
@@ -37,7 +37,7 @@ namespace Models {
         }
 
         public override string ToString(){
-            return $"{IdFilme} - {NomeFilme}";
+            return $"{IdFilme} - {NomeFilme} - R$: {Valor}";
         }
     }
 }

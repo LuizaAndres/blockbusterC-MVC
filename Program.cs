@@ -11,6 +11,10 @@ namespace blockbusterC_MVC
     {
         public static void Main(string[] args)
         {
+            //import data
+            ClienteView.AddBasicCliente();
+            FilmeView.AddBasicFilme();
+            LocacaoView.AddBasicLocacao();
             Console.WriteLine ("============ Blockbuster! ============ ");
             int opt = 0;
             do{
@@ -25,7 +29,6 @@ namespace blockbusterC_MVC
                 Console.WriteLine ("| 6 - Listar Filmes       |");
 //                Console.WriteLine ("| 7 - Consultar Filme     |");
                 Console.WriteLine ("| 8 - Consultar Locação   |");
-                Console.WriteLine ("| 9 - Importar Dados      |");
                 Console.WriteLine ("| 0 - Sair                |");
                 Console.WriteLine ("+-------------------------+");
                 try {
@@ -58,16 +61,10 @@ namespace blockbusterC_MVC
 //                        consultarFilme ();
                         break;
                     case 8:
-                        View.LocacaoView.GetLocacoes();
+                        View.LocacaoView.listarLocacoes();
                         break;
-                    case 9:
-                        ClienteView.AddBasicCliente();
-                        FilmeView.AddBasicFilme();
-                        LocacaoView.AddBasicLocacao();
-                        break;
-                }
+                    }
             } while (opt != 0);
-
         }   
     }
 }
