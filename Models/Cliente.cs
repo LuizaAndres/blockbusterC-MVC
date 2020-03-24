@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Repositories;
 using System;
-
 namespace Models {
     public class Cliente {
         public int ID { get; set; }
@@ -10,7 +9,6 @@ namespace Models {
         public string Cpf { get; set; }
         public int QtdDias { get; set; }
         public List<Locacao> locacoes { get; set; }
-
         public Cliente (int id, string nome, DateTime dtNasc, string cpf, int qtdDias){
             ID = id;
             Nome = nome;
@@ -24,6 +22,12 @@ namespace Models {
         }
         public override string ToString(){
             return $"{ID} - {Nome}";
+        }
+        public double ValorLocacoes(){
+            double valor =0;
+            foreach(Locacao locacao in this.locacoes)
+            valor = valor + locacao.ValorLocacao();
+            return valor;
         }
     }
 }

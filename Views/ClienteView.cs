@@ -1,6 +1,8 @@
 using System;
 using Models;
 using Controllers;
+using System.Collections;
+using System.Linq;
 
 namespace View {
     public class ClienteView {
@@ -87,32 +89,53 @@ namespace View {
         ClienteController.AddCliente(cliente);
         }
         public static void AddCliente () {
-        int id = Controllers.ClienteController.Clientes().Count+1;
-        Console.WriteLine ("Informações sobre o cliente: ");
-        Console.WriteLine ("Informe o nome: ");
-        String nome = Console.ReadLine ();
-        Console.WriteLine ("Informe a data de nascimento (dd/mm/yyyy): ");
-        String sDtNasc = Console.ReadLine ();
-        DateTime dtNasc;
-        try {
-            dtNasc = Convert.ToDateTime (sDtNasc);
-        } catch {
-            Console.WriteLine ("Formato inválido de data, será utilizada a data atual pra cadastro");
-            dtNasc = DateTime.Now;
+            int id = Controllers.ClienteController.Clientes().Count+1;
+            Console.WriteLine ("Informações sobre o cliente: ");
+            Console.WriteLine ("Informe o nome: ");
+            String nome = Console.ReadLine ();
+            Console.WriteLine ("Informe a data de nascimento (dd/mm/yyyy): ");
+            String sDtNasc = Console.ReadLine ();
+            DateTime dtNasc;
+            try {
+                dtNasc = Convert.ToDateTime (sDtNasc);
+            } catch {
+                Console.WriteLine ("Formato inválido de data, será utilizada a data atual pra cadastro");
+                dtNasc = DateTime.Now;
+            }
+            Console.WriteLine ("Informe o C.P.F.: ");
+            String cpf = Console.ReadLine ();
+            Console.WriteLine ("Informe a quantidade de dias para devolução: ");
+            int qtdDias = Convert.ToInt32 (Console.ReadLine ());
+            Cliente cliente = new Cliente (
+                Cliente.GetClientes().Count,
+                nome,
+                dtNasc,
+                cpf,
+                qtdDias
+            );
+            // colocando cliente no control
+            ClienteController.AddCliente(cliente);
         }
-        Console.WriteLine ("Informe o C.P.F.: ");
-        String cpf = Console.ReadLine ();
-        Console.WriteLine ("Informe a quantidade de dias para devolução: ");
-        int qtdDias = Convert.ToInt32 (Console.ReadLine ());
-        Cliente cliente = new Cliente (
-            Cliente.GetClientes().Count,
-            nome,
-            dtNasc,
-            cpf,
-            qtdDias
-        );
-        // colocando cliente no control
-        ClienteController.AddCliente(cliente);
+        public static void GetClientesLinq(){
+            Console.WriteLine("\n");
+            Console.WriteLine("Digite o ID do cliente: ");
+            int id = Convert.ToInt32 (Console.ReadLine());
+            IEnumerable clienteQuerry = 
+                from cliente in ClienteController.Clientes()
+                    where cliente.ID == id
+                        select cliente;
+            foreach (Cliente cliente in clienteQuerry){
+                Console.WriteLine(cliente.Nome);
+                foreach (Locacao locacao in cliente.locacoes){
+                    Console.WriteLine(locacao);
+                    foreach (Filme filme in locacao.Filmes){
+                        Console.WriteLine(filme);
+                    }
+                    double valor = locacao.ValorLocacao();
+                Console.WriteLine($"Valor da locação R$: {valor}\n");
+                }
+            }
+            Console.WriteLine("\n");
         }
         public static void GetClientes(){
             Console.WriteLine ("Clientes");

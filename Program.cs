@@ -25,7 +25,7 @@ namespace blockbusterC_MVC
 //                Console.WriteLine ("| 2 - Cadastrar Filme     |");
 //                Console.WriteLine ("| 3 - Cadastrar Locação   |");
                 Console.WriteLine ("| 4 - Listar Clientes     |");
-//                Console.WriteLine ("| 5 - Consultar Cliente   |");
+                Console.WriteLine ("| 5 - Consultar Cliente   |");
                 Console.WriteLine ("| 6 - Listar Filmes       |");
 //                Console.WriteLine ("| 7 - Consultar Filme     |");
                 Console.WriteLine ("| 8 - Consultar Locação   |");
@@ -49,9 +49,11 @@ namespace blockbusterC_MVC
 //                        inserirLocacao ();
                         break;
                     case 4:
+                        
                         View.ClienteView.GetClientes();
                         break;
                     case 5:
+                        View.ClienteView.GetClientesLinq();
 //                        consultarCliente ();
                         break;
                     case 6:

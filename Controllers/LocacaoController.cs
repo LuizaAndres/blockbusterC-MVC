@@ -11,5 +11,6 @@ namespace Controllers {
         public static void AddLocacao(Cliente cliente, List<Filme> locacaoFilmes ) {
             RepositoryLocacao.locacoes.Add(new Locacao(cliente, locacaoFilmes));
         }
+        
     }
 }

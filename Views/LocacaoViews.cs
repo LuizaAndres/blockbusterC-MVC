@@ -42,6 +42,8 @@ namespace View {
                     
                     Console.WriteLine(f.NomeFilme);
                 }
+                double valor = l.ValorLocacao();
+                Console.WriteLine($"valor da locação R$: {valor}");
             //    foreach(Cliente c in Repositories.RepositoryCliente.clientes){
             //     Console.WriteLine(c.Nome);
             //     foreach(Locacao loc in c.locacoes){

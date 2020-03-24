@@ -5,7 +5,6 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Repositories;
-
 namespace Models {
     public class Filme {
          public int IdFilme { get; set; }
@@ -29,13 +28,10 @@ namespace Models {
             Valor = valor;
             QtdEstoque = qtdEstoque;
             VezesLocado = new List<Locacao> ();
-            
         }
-
         public static List<Filme> GetFilmes () {
             return RepositoryFilme.Filmes();
         }
-
         public override string ToString(){
             return $"{IdFilme} - {NomeFilme} - R$: {Valor}";
         }
