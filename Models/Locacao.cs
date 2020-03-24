@@ -20,15 +20,8 @@ namespace Models {
         public static List<Locacao> GetLocacoes () {
             return RepositoryLocacao.Locacoes();
         }
-        public double ValorLocacao(){
-            double valor = 0;
-            foreach(Filme filme in this.Filmes){
-                valor = filme.Valor ++;
-            }
-            return valor;
-        }
-         public override string ToString(){
+        public override string ToString(){
              return $"Locacao: {ID}";
-         }
+        }
     }
 }

@@ -40,20 +40,11 @@ namespace View {
                 foreach(Filme f in l.Filmes){
                     Console.WriteLine($"Locacao: {l.ID+1}");
                     
-                    Console.WriteLine(f.NomeFilme);
+                    Console.WriteLine($"filme: {f.NomeFilme} Valor:R$ {f.Valor}");
                 }
-                double valor = l.ValorLocacao();
+                double valor = LocacaoController.ValorLocacao(l);
                 Console.WriteLine($"valor da locação R$: {valor}");
-            //    foreach(Cliente c in Repositories.RepositoryCliente.clientes){
-            //     Console.WriteLine(c.Nome);
-            //     foreach(Locacao loc in c.locacoes){
-            //         Console.WriteLine(loc.DataLocacao);
-            //         foreach(Filme fi in loc.Filmes){
-            //             Console.WriteLine(fi.NomeFilme);
-            //         }
-            //     }
-            //}
+            }
         }
-    }
 }
 }

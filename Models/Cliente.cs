@@ -23,11 +23,5 @@ namespace Models {
         public override string ToString(){
             return $"{ID} - {Nome}";
         }
-        public double ValorLocacoes(){
-            double valor =0;
-            foreach(Locacao locacao in this.locacoes)
-            valor = valor + locacao.ValorLocacao();
-            return valor;
-        }
     }
 }

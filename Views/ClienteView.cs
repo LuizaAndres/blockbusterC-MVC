@@ -131,7 +131,7 @@ namespace View {
                     foreach (Filme filme in locacao.Filmes){
                         Console.WriteLine(filme);
                     }
-                    double valor = locacao.ValorLocacao();
+                    double valor = LocacaoController.ValorLocacao(locacao);
                 Console.WriteLine($"Valor da locação R$: {valor}\n");
                 }
             }

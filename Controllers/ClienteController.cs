@@ -12,5 +12,6 @@ namespace Controllers {
         public static void AddCliente(Cliente cliente){
             RepositoryCliente.clientes.Add(cliente);
         }
+        
     }
 }
