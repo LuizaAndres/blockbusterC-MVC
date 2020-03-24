@@ -4,16 +4,7 @@ using System.Collections.Generic;
 using Controllers;
 namespace View {
     public class LocacaoView {
-        // public static void AddLocacoes(){
-        // }
-        //  public static void GetLocacoes(){
-        //     foreach (Locacao locacao in LocacaoController.GetLocacoes())
-        //     {
-        //         Console.WriteLine(locacao);   
-        //     }
-        // }
         public static void AddBasicLocacao() {
-            
             Cliente cliente = Cliente.GetClientes()[1];
             List<Filme> locacaoFilmes = new List<Filme>();
             locacaoFilmes.Add(Repositories.RepositoryFilme.filmes[1]);
@@ -46,5 +37,5 @@ namespace View {
                 Console.WriteLine($"valor da locação R$: {valor}");
             }
         }
-}
+    }
 }

@@ -15,8 +15,6 @@ namespace Models {
             Filmes = filmes;
             cliente.locacoes.Add(this);
         }
-        public static void addFilmeLocacao(){
-        }
         public static List<Locacao> GetLocacoes () {
             return RepositoryLocacao.Locacoes();
         }

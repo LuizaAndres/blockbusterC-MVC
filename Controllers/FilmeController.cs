@@ -9,7 +9,6 @@ namespace Controllers {
         public static List<Filme> Filmes(){
             return Filme.GetFilmes();
         }
-
         public static void AddFilme(Filme filme){
             RepositoryFilme.AddFilme(filme);
         }
