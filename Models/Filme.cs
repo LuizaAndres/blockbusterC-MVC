@@ -27,7 +27,7 @@ namespace Models {
             Sinopse = sinopse;
             Valor = valor;
             QtdEstoque = qtdEstoque;
-            VezesLocado = new List<Locacao> ();
+            VezesLocado = new List<Locacao>();
         }
         public static List<Filme> GetFilmes () {
             return RepositoryFilme.Filmes();

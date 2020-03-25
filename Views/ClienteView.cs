@@ -88,8 +88,8 @@ namespace View {
         );
         ClienteController.AddCliente(cliente);
         }
-        public static void AddCliente () {
-            int id = Controllers.ClienteController.Clientes().Count+1;
+        public static void AddClienteView () {
+
             Console.WriteLine ("Informações sobre o cliente: ");
             Console.WriteLine ("Informe o nome: ");
             String nome = Console.ReadLine ();
@@ -107,7 +107,7 @@ namespace View {
             Console.WriteLine ("Informe a quantidade de dias para devolução: ");
             int qtdDias = Convert.ToInt32 (Console.ReadLine ());
             Cliente cliente = new Cliente (
-                Cliente.GetClientes().Count,
+                Cliente.GetClientes().Count+1,
                 nome,
                 dtNasc,
                 cpf,

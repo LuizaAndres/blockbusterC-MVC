@@ -22,7 +22,7 @@ namespace blockbusterC_MVC
                 Console.WriteLine ("+-------------------------+");
                 Console.WriteLine ("| Digite a opção desejada |");
                 Console.WriteLine ("| 1 - Cadastrar Cliente   |");
-//                Console.WriteLine ("| 2 - Cadastrar Filme     |");
+                Console.WriteLine ("| 2 - Cadastrar Filme     |");
 //                Console.WriteLine ("| 3 - Cadastrar Locação   |");
                 Console.WriteLine ("| 4 - Listar Clientes     |");
                 Console.WriteLine ("| 5 - Consultar Cliente   |");
@@ -40,10 +40,10 @@ namespace blockbusterC_MVC
                 // seleçao
                 switch (opt) {
                     case 1:
-                        ClienteView.AddCliente();
+                        ClienteView.AddClienteView();
                         break;
                     case 2:
-//                        FilmeView.AddFilme();
+                        FilmeView.AddFilmeView();
                         break;
                     case 3:
 //                        inserirLocacao ();
