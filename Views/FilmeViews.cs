@@ -1,17 +1,34 @@
 using System;
 using Models;
 using Controllers;
+using System.Collections;
+using System.Linq;
 
 namespace View {
     public class FilmeView {
-        public static void GetFilme(){
+        
+        public static void GetFilmes(){
             Console.WriteLine("ID - Filme - Valor"); 
             foreach (Filme filme in FilmeController.Filmes())
             {
                 Console.WriteLine(filme);   
             }
         }
+        public static void GetFilmeLinq(){
+            Console.WriteLine("\n");
+            Console.WriteLine("Digite o ID do filme: ");
+            int id = Convert.ToInt32 (Console.ReadLine());
+            IEnumerable filmeQuerry = 
+                from filme in FilmeController.Filmes()
+                    where filme.IdFilme == id
+                        select filme;
+            foreach (Filme filme in filmeQuerry){
+                Console.WriteLine($"ID: {filme.IdFilme} |Nome: {filme.NomeFilme} |Lancamento: {filme.DtLancamento} |Sinopse: {filme.Sinopse} |Valor: {filme.Valor} |vezes locado: {filme.VezesLocado.Count}");
 
+                }
+            }
+            
+        
         public static void AddFilmeView() {
             Console.WriteLine ("Informações sobre o filme: ");
             Console.WriteLine ("Informe o nome: ");

@@ -9,7 +9,11 @@ namespace Controllers {
             return RepositoryLocacao.Locacoes();
         }
         public static void AddLocacao(Cliente cliente, List<Filme> locacaoFilmes ) {
-            RepositoryLocacao.locacoes.Add(new Locacao(cliente, locacaoFilmes));
+            Locacao locacao = new Locacao (cliente, locacaoFilmes);
+            RepositoryLocacao.locacoes.Add(locacao);
+            foreach (Filme filme in locacaoFilmes){
+                filme.VezesLocado.Add(locacao);
+            }
         }
          public static double ValorLocacao(Locacao locacao){
             double valor = 0;

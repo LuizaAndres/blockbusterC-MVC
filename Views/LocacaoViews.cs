@@ -12,7 +12,7 @@ namespace View {
             LocacaoController.AddLocacao(cliente, locacaoFilmes);
             cliente = Cliente.GetClientes()[1];
             locacaoFilmes = new List<Filme>();
-            locacaoFilmes.Add(Repositories.RepositoryFilme.filmes[5]);
+            locacaoFilmes.Add(Repositories.RepositoryFilme.filmes[1]);
             LocacaoController.AddLocacao(cliente, locacaoFilmes);
             cliente = Cliente.GetClientes()[2];
             locacaoFilmes = new List<Filme>();
@@ -39,7 +39,9 @@ namespace View {
             Console.WriteLine("1 - sim");
             op = Convert.ToInt32 (Console.ReadLine ());
             }while (op==1);
+
             LocacaoController.AddLocacao(cliente, locacaoFilmes);
+            
         }
         public static void listarLocacoes(){
             foreach(Locacao l in Repositories.RepositoryLocacao.locacoes){

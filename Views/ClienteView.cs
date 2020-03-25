@@ -116,7 +116,7 @@ namespace View {
             // colocando cliente no control
             ClienteController.AddCliente(cliente);
         }
-        public static void GetClientesLinq(){
+        public static void GetClienteLinq(){
             Console.WriteLine("\n");
             Console.WriteLine("Digite o ID do cliente: ");
             int id = Convert.ToInt32 (Console.ReadLine());

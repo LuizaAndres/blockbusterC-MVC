@@ -1,10 +1,5 @@
 using System;
 using View;
-using Models;
-//deixei aqui como uma solução rapida pra importar dados da Lista
-using Repositories;
-
-
 namespace blockbusterC_MVC
 {
     public class Program
@@ -27,7 +22,7 @@ namespace blockbusterC_MVC
                 Console.WriteLine ("| 4 - Listar Clientes     |");
                 Console.WriteLine ("| 5 - Consultar Cliente   |");
                 Console.WriteLine ("| 6 - Listar Filmes       |");
-//                Console.WriteLine ("| 7 - Consultar Filme     |");
+                Console.WriteLine ("| 7 - Consultar Filme     |");
                 Console.WriteLine ("| 8 - Consultar Locação   |");
                 Console.WriteLine ("| 0 - Sair                |");
                 Console.WriteLine ("+-------------------------+");
@@ -49,18 +44,16 @@ namespace blockbusterC_MVC
                         LocacaoView.AddLocacaoView();
                         break;
                     case 4:
-                        
                         ClienteView.GetClientes();
                         break;
                     case 5:
-                        ClienteView.GetClientesLinq();
-//                        consultarCliente ();
+                        ClienteView.GetClienteLinq();
                         break;
                     case 6:
-                        FilmeView.GetFilme();
+                        FilmeView.GetFilmes();
                         break;
                     case 7:
-//                        consultarFilme ();
+                        FilmeView.GetFilmeLinq();
                         break;
                     case 8:
                         LocacaoView.listarLocacoes();
