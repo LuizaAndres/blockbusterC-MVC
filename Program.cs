@@ -23,7 +23,7 @@ namespace blockbusterC_MVC
                 Console.WriteLine ("| Digite a opção desejada |");
                 Console.WriteLine ("| 1 - Cadastrar Cliente   |");
                 Console.WriteLine ("| 2 - Cadastrar Filme     |");
-//                Console.WriteLine ("| 3 - Cadastrar Locação   |");
+                Console.WriteLine ("| 3 - Cadastrar Locação   |");
                 Console.WriteLine ("| 4 - Listar Clientes     |");
                 Console.WriteLine ("| 5 - Consultar Cliente   |");
                 Console.WriteLine ("| 6 - Listar Filmes       |");
@@ -46,24 +46,24 @@ namespace blockbusterC_MVC
                         FilmeView.AddFilmeView();
                         break;
                     case 3:
-//                        inserirLocacao ();
+                        LocacaoView.AddLocacaoView();
                         break;
                     case 4:
                         
-                        View.ClienteView.GetClientes();
+                        ClienteView.GetClientes();
                         break;
                     case 5:
-                        View.ClienteView.GetClientesLinq();
+                        ClienteView.GetClientesLinq();
 //                        consultarCliente ();
                         break;
                     case 6:
-                        View.FilmeView.GetFilme();
+                        FilmeView.GetFilme();
                         break;
                     case 7:
 //                        consultarFilme ();
                         break;
                     case 8:
-                        View.LocacaoView.listarLocacoes();
+                        LocacaoView.listarLocacoes();
                         break;
                     }
             } while (opt != 0);
