@@ -113,7 +113,6 @@ namespace View {
                 cpf,
                 qtdDias
             );
-            // colocando cliente no control
             ClienteController.AddCliente(cliente);
         }
         public static void GetClienteLinq(){
