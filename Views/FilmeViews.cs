@@ -3,10 +3,8 @@ using Models;
 using Controllers;
 using System.Collections;
 using System.Linq;
-
 namespace View {
     public class FilmeView {
-        
         public static void GetFilmes(){
             Console.WriteLine("ID - Filme - Valor"); 
             foreach (Filme filme in FilmeController.Filmes())
@@ -24,11 +22,8 @@ namespace View {
                         select filme;
             foreach (Filme filme in filmeQuerry){
                 Console.WriteLine($"ID: {filme.IdFilme} |Nome: {filme.NomeFilme} |Lancamento: {filme.DtLancamento} |Sinopse: {filme.Sinopse} |Valor: {filme.Valor} |vezes locado: {filme.VezesLocado.Count}");
-
                 }
             }
-            
-        
         public static void AddFilmeView() {
             Console.WriteLine ("Informações sobre o filme: ");
             Console.WriteLine ("Informe o nome: ");

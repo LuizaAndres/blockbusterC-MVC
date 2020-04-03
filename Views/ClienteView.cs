@@ -3,7 +3,6 @@ using Models;
 using Controllers;
 using System.Collections;
 using System.Linq;
-
 namespace View {
     public class ClienteView {
         public static void AddBasicCliente () {
