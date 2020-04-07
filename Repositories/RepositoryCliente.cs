@@ -4,9 +4,18 @@ using Models;
 
 namespace Repositories {
     public static class RepositoryCliente {
-        public static List<Models.Cliente> clientes = new List<Models.Cliente>();
+        private static readonly List<Cliente> clientes = new List<Cliente>();
+
         public static List<Cliente> Clientes(){
             return clientes;
+        }
+
+        public static void AddCliente(Cliente cliente){
+            clientes.Add(cliente);
+        }
+
+        public static int GetId(){
+            return clientes.Count + 1;
         }
     }
 }

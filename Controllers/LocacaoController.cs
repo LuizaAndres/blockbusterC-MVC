@@ -1,28 +1,57 @@
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
+using System;
 using Models;
-using Repositories;
+
 namespace Controllers {
-    public class LocacaoController : Controller {
-        public static List<Locacao> GetLocacoes(){
-            return RepositoryLocacao.Locacoes();
+    public class LocacaoController {
+
+        /// <sumary>This method insert a customer rental on the database.</sumary> 
+        public static Locacao InserirLocacao(
+            Cliente cliente
+        ){
+            return Locacao.InserirLocacao(cliente, DateTime.Now); 
         }
-        public static void AddLocacao(Cliente cliente, List<Filme> locacaoFilmes ) {
-            Locacao locacao = new Locacao (cliente, locacaoFilmes);
-            RepositoryLocacao.locacoes.Add(locacao);
-            foreach (Filme filme in locacaoFilmes){
-                filme.VezesLocado.Add(locacao);
-            }
-            var db = new Context();
-            db.Locacoes.Add(locacao);
-            db.SaveChanges();
+
+        /// <sumary>This method insert a movie on the customer rental.</sumary>
+        public static void InserirFilme(
+            Locacao locacao,
+            Filme filme
+        ){
+            locacao.InserirFilme(filme);
         }
-         public static double ValorLocacao(Locacao locacao){
-            double valor = 0;
-            foreach(Filme filme in locacao.Filmes){
-                valor = valor + filme.Valor;
+
+        /// <summary>
+        /// This method get the total value of the rental
+        /// </summary>
+        /// <returns>The value of the rental.</returns>
+        public static double GetValorTotal (Locacao locacao) {
+            double valorTotal = 0;
+            
+            foreach (FilmeLocacao filme in locacao.Filmes){
+                valorTotal += filme.Filme.Valor;
             }
-            return valor;
+
+            return valorTotal;
+        }
+
+        /// <summary>
+        /// This method get the number of films
+        /// </summary>
+        /// <returns>The number of films</returns>
+        public static double GetQtdFilmes (Locacao locacao) {
+            return locacao.Filmes.Count;
+        }
+
+        /// <summary>
+        /// This method calculates the return date
+        /// </summary>
+        /// <returns>The customer's return date</returns>
+        public static DateTime GetDataDevolucao (DateTime DtLocacao, Cliente Cliente) {
+            return DtLocacao.AddDays (Cliente.Dias);
+        }
+
+        /// <sumary>This method access find a customer rental.</sumary>
+        public static Locacao GetLocacao (int idLocacao){
+            return Locacao.GetLocacao(idLocacao);
         }
     }
 }

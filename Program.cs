@@ -1,15 +1,15 @@
 using System;
 using View;
-namespace blockbusterC_MVC
+
+namespace csharp_mvc_blockbuster
 {
-    public class Program
+    class Program
     {
-        public static void Main(string[] args)
-        {
+        static void Main () {
             Console.WriteLine ("============ Blockbuster! ============ ");
-            int opt = 0;
-            do{
-                // Show menu options
+            int opt;
+            do {
+                // Menu
                 Console.WriteLine ("+-------------------------+");
                 Console.WriteLine ("| Digite a opção desejada |");
                 Console.WriteLine ("| 1 - Cadastrar Cliente   |");
@@ -22,40 +22,41 @@ namespace blockbusterC_MVC
                 Console.WriteLine ("| 8 - Consultar Locação   |");
                 Console.WriteLine ("| 0 - Sair                |");
                 Console.WriteLine ("+-------------------------+");
+
                 try {
                     opt = Convert.ToInt32 (Console.ReadLine ());
                 } catch {
                     Console.WriteLine ("Opção inválida");
                     opt = 99;
                 }
-                // seleçao
+
                 switch (opt) {
                     case 1:
-                        ClienteView.AddClienteView();
+                        ClienteView.InserirCliente ();
                         break;
                     case 2:
-                        FilmeView.AddFilmeView();
+                        FilmeView.InserirFilme ();
                         break;
                     case 3:
-                        LocacaoView.AddLocacaoView();
+                        LocacaoView.InserirLocacao ();
                         break;
                     case 4:
-                        ClienteView.GetClientes();
+                        ClienteView.ListarClientes ();
                         break;
                     case 5:
-                        ClienteView.GetClienteLinq();
+                        ClienteView.ConsultarCliente ();
                         break;
                     case 6:
-                        FilmeView.GetFilmes();
+                        FilmeView.ListarFilmes ();
                         break;
                     case 7:
-                        FilmeView.GetFilmeLinq();
+                        FilmeView.ConsultarFilme ();
                         break;
                     case 8:
-                        LocacaoView.listarLocacoes();
+                        LocacaoView.ConsultarLocacao ();
                         break;
-                    }
+                }
             } while (opt != 0);
-        }   
+        }
     }
 }

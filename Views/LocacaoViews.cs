@@ -1,41 +1,88 @@
 using System;
 using Models;
-using System.Collections.Generic;
 using Controllers;
+
 namespace View {
     public class LocacaoView {
-        
-        public static void AddLocacaoView(){
-            Console.WriteLine("Criando Locação:");
-            Console.WriteLine("Digite id do cliente");
-            int idC = Convert.ToInt32 (Console.ReadLine ());
-            int op;
-            Cliente cliente = Cliente.GetClientes()[idC-1];
-            List<Filme> locacaoFilmes = new List<Filme>();
-            do{
-            Console.WriteLine("Digite id do filme");
-            int idF = Convert.ToInt32 (Console.ReadLine ());
-            locacaoFilmes.Add(Repositories.RepositoryFilme.filmes[idF-1]);
-            Console.WriteLine("Deseja adicionar outro filme?");
-            Console.WriteLine("0 - não");
-            Console.WriteLine("1 - sim");
-            op = Convert.ToInt32 (Console.ReadLine ());
-            }while (op==1);
-            LocacaoController.AddLocacao(cliente, locacaoFilmes);
-        }
-        public static void listarLocacoes(){
-            foreach(Locacao locacao in Repositories.RepositoryLocacao.locacoes){
-                Console.WriteLine("\n----------------------------");
-                Console.WriteLine("Cliente:");
-                Console.WriteLine($"Id cliente: {locacao.Cliente.ClienteId+1} |Nome: {locacao.Cliente.Nome}");
-                foreach(Filme filme in locacao.Filmes){
-                    Console.WriteLine($"Locacao: {locacao.LocacaoId+1}");
-                    
-                    Console.WriteLine($"Id: {filme.FilmeId+1} |Filme: {filme.NomeFilme} |Valor:R$ {filme.Valor}");
+         /// <summary>
+        /// This method is responsible for creating the rents
+        /// </summary>
+        public static void InserirLocacao () {
+            Console.WriteLine ("Informações sobre a locação: ");
+            Cliente cliente;
+            Filme filme;
+
+            // Search the costumer with id
+            do {
+                Console.WriteLine ("Informe o id do cliente: ");
+                int ClienteId = Convert.ToInt32 (Console.ReadLine ());
+                cliente = null; // Reset the value to avoid garbage
+
+                // Try to locate the information in the collection
+                try {
+                    cliente = ClienteController.GetCliente(ClienteId);
+                    if (cliente == null) { // If the information is not present, a message is returned
+                        Console.WriteLine ("Cliente não localizado, favor digitar outro id.");
+                    }
+                } catch {
+                    Console.WriteLine ("Cliente não localizado, favor digitar outro id.");
                 }
-                double valor = LocacaoController.ValorLocacao(locacao);
-                Console.WriteLine($"valor da locação R$: {valor}");
-            }
+
+            } while (cliente == null);
+
+            // Insert the rent to the costumer
+            Locacao locacao = LocacaoController.InserirLocacao(cliente);
+
+            // Search the movie with id
+            int filmOpt = 0;
+            do {
+                Console.WriteLine ("Informe o id do filme alugado: ");
+                int idFilme = Convert.ToInt32 (Console.ReadLine ());
+                filme = null; // Reset the value to avoid garbage
+
+                // Try to locate the information in the collection
+                try {
+                    filme = FilmeController.GetFilme(idFilme);
+                    if (filme == null) { // If the information is not present, a message is returned
+                        Console.WriteLine ("Filme não localizado, favor digitar outro id.");
+                    }
+                } catch {
+                    Console.WriteLine ("Filme não localizado, favor digitar outro id.");
+                }
+
+                if (filme != null) {
+                    // Insert the movie on the rent
+                    LocacaoController.InserirFilme (locacao, filme);
+                    Console.WriteLine ("Deseja informar outro filme? " +
+                        "Informar 1 para Não ou qualquer outro valor para Sim.");
+                    filmOpt = Convert.ToInt32 (Console.ReadLine ());
+                }
+            } while (filmOpt != 1);
+        }
+
+        /// <summary>
+        /// This method is responsible for consulting a rent
+        /// </summary>
+        public static void ConsultarLocacao () {
+            Locacao locacao;
+
+            // Search the rent with id
+            do {
+                Console.WriteLine ("Informe a locacao que deseja consultar: ");
+                int idLocacao = Convert.ToInt32 (Console.ReadLine ());
+                locacao = null; // Reset the value to avoid garbage
+
+                // Try to locate the information in the collection
+                try {
+                    locacao = LocacaoController.GetLocacao(idLocacao);
+                    if (locacao == null) { // If the information is not present, a message is returned
+                        Console.WriteLine ("Locação não localizada, favor digitar outro id.");
+                    }
+                } catch {
+                    Console.WriteLine ("Locação não localizada, favor digitar outro id.");
+                }
+            } while (locacao == null);
+            Console.WriteLine (locacao.ToString ());
         }
     }
 }
