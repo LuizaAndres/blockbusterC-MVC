@@ -13,6 +13,9 @@ namespace Controllers {
             foreach (Filme filme in locacaoFilmes){
                 filme.VezesLocado.Add(locacao);
             }
+            var db = new Context();
+            db.Locacoes.Add(locacao);
+            db.SaveChanges();
         }
          public static double ValorLocacao(Locacao locacao){
             double valor = 0;

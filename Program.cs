@@ -6,10 +6,6 @@ namespace blockbusterC_MVC
     {
         public static void Main(string[] args)
         {
-            //import data
-            ClienteView.AddBasicCliente();
-            FilmeView.AddBasicFilme();
-            LocacaoView.AddBasicLocacao();
             Console.WriteLine ("============ Blockbuster! ============ ");
             int opt = 0;
             do{

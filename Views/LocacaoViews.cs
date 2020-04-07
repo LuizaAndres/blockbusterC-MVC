@@ -4,25 +4,7 @@ using System.Collections.Generic;
 using Controllers;
 namespace View {
     public class LocacaoView {
-        public static void AddBasicLocacao() {
-            Cliente cliente = Cliente.GetClientes()[1];
-            List<Filme> locacaoFilmes = new List<Filme>();
-            locacaoFilmes.Add(Repositories.RepositoryFilme.filmes[1]);
-            locacaoFilmes.Add(Repositories.RepositoryFilme.filmes[6]);
-            LocacaoController.AddLocacao(cliente, locacaoFilmes);
-            cliente = Cliente.GetClientes()[1];
-            locacaoFilmes = new List<Filme>();
-            locacaoFilmes.Add(Repositories.RepositoryFilme.filmes[1]);
-            LocacaoController.AddLocacao(cliente, locacaoFilmes);
-            cliente = Cliente.GetClientes()[2];
-            locacaoFilmes = new List<Filme>();
-            locacaoFilmes.Add(Repositories.RepositoryFilme.filmes[0]);
-            LocacaoController.AddLocacao(cliente, locacaoFilmes);
-            cliente = Cliente.GetClientes()[3];
-            locacaoFilmes = new List<Filme>();
-            locacaoFilmes.Add(Repositories.RepositoryFilme.filmes[4]);
-            LocacaoController.AddLocacao(cliente, locacaoFilmes);
-        }
+        
         public static void AddLocacaoView(){
             Console.WriteLine("Criando Locação:");
             Console.WriteLine("Digite id do cliente");
@@ -39,21 +21,19 @@ namespace View {
             Console.WriteLine("1 - sim");
             op = Convert.ToInt32 (Console.ReadLine ());
             }while (op==1);
-
             LocacaoController.AddLocacao(cliente, locacaoFilmes);
-            
         }
         public static void listarLocacoes(){
-            foreach(Locacao l in Repositories.RepositoryLocacao.locacoes){
+            foreach(Locacao locacao in Repositories.RepositoryLocacao.locacoes){
                 Console.WriteLine("\n----------------------------");
                 Console.WriteLine("Cliente:");
-                Console.WriteLine($"Id cliente: {l.Cliente.ID+1} |Nome: {l.Cliente.Nome}");
-                foreach(Filme f in l.Filmes){
-                    Console.WriteLine($"Locacao: {l.ID+1}");
+                Console.WriteLine($"Id cliente: {locacao.Cliente.ClienteId+1} |Nome: {locacao.Cliente.Nome}");
+                foreach(Filme filme in locacao.Filmes){
+                    Console.WriteLine($"Locacao: {locacao.LocacaoId+1}");
                     
-                    Console.WriteLine($"Id: {f.IdFilme+1} |Filme: {f.NomeFilme} |Valor:R$ {f.Valor}");
+                    Console.WriteLine($"Id: {filme.FilmeId+1} |Filme: {filme.NomeFilme} |Valor:R$ {filme.Valor}");
                 }
-                double valor = LocacaoController.ValorLocacao(l);
+                double valor = LocacaoController.ValorLocacao(locacao);
                 Console.WriteLine($"valor da locação R$: {valor}");
             }
         }
