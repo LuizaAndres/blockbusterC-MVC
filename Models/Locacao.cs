@@ -7,31 +7,16 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Models {
     public class Locacao {
-        /* 
-            Getters and Setters 
-        */
-        /// <value>Get and Set the value of LocacaoId</value>
         public int LocacaoId { get; set; }
-        /// <value>Get and Set the value of cliente</value>
         public int ClienteId { get; set; }
-        /// <value>Get and Set the value of cliente</value>
         public virtual Cliente Cliente { get; set; }
-        /// <value>Get and Set the value of dtLocacao</value>
         [Required]
         public DateTime DtLocacao { get; set; }
-        /// <value>Get and Set the value of Filmes</value>
         public ICollection<FilmeLocacao> Filmes { get; set; }
 
         public Locacao(){
             Filmes = new List<FilmeLocacao>();
         }
-
-        /// <summary>
-        /// Constructor to Locacao object.
-        /// </summary>
-        /// <param name="LocacaoId">Unique rental identification</param>
-        /// <param name="cliente">Customer object</param>
-        /// /// <param name="dtLocacao">Rental date</param>
         public static Locacao InserirLocacao (Cliente cliente, DateTime dtLocacao) {
             Locacao locacao = new Locacao {
                 ClienteId = cliente.ClienteId,
@@ -48,10 +33,6 @@ namespace Models {
             return locacao;
         }
 
-        /// <summary>
-        /// This method insert a movie into a customer rental.
-        /// </summary>
-        /// <param name="filme">The movie object.</param>
         public void InserirFilme (Filme filme) {
             var db = new Context();
 
@@ -64,10 +45,8 @@ namespace Models {
             db.SaveChanges();
             Filmes.Add (filmeLocacao);
             filme.Locacoes.Add(filmeLocacao);
-            
         }
 
-        /// <sumary>This method determines the string convertion.</sumary>
         public override string ToString () {
             var db = new Context();
             Cliente cliente = (
@@ -102,7 +81,6 @@ namespace Models {
             return retorno;
         }
 
-        /// <sumary>This method find a customer rental.</sumary>
         public static Locacao GetLocacao(int LocacaoId){
             var db = new Context();
             return (from locacao in db.Locacoes

@@ -4,9 +4,7 @@ using Controllers;
 
 namespace View {
     public class FilmeView {
-        /// <summary>
-        /// This method is responsible for creating the movies
-        /// </summary>
+
         public static void InserirFilme () {
             Console.WriteLine ("Informações sobre o filme: ");
             Console.WriteLine ("Informe o nome: ");
@@ -20,39 +18,23 @@ namespace View {
             Console.WriteLine ("Informe a quantidade em estoque: ");
             int estoque = Convert.ToInt32 (Console.ReadLine ());
             
-            FilmeController.InserirFilme (
-                nome,
-                sDtLancamento,
-                cpf,
-                valor,
-                estoque
-            );
+            FilmeController.InserirFilme (nome, sDtLancamento, cpf, valor, estoque);
         }
 
-        /// <summary>
-        /// This method is responsible for listing the movies
-        /// </summary>
         public static void ListarFilmes () {
             Console.WriteLine ("Lista de Filmes: ");
             FilmeController.GetFilmes().ForEach (filme => Console.WriteLine (filme.ToString (true)));
         }
-
-        /// <summary>
-        /// This method is responsible for consulting a movie
-        /// </summary>
         public static void ConsultarFilme () {
             Filme filme;
 
-            // Search the movie with id
             do {
                 Console.WriteLine ("Informe o filme que deseja consultar: ");
                 int idFilme = Convert.ToInt32 (Console.ReadLine ());
-                filme = null; // Reset the value to avoid garbage
-
-                // Try to locate the information in the collection
+                filme = null;
                 try {
                     filme = FilmeController.GetFilme(idFilme);
-                    if (filme == null) { // If the information is not present, a message is returned
+                    if (filme == null) { 
                         Console.WriteLine ("Filme não localizado, favor digitar outro id.");
                     }
                 } catch {

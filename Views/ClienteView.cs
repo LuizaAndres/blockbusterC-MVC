@@ -4,9 +4,6 @@ using Controllers;
 
 namespace View {
     public class ClienteView {
-        /// <summary>
-        /// This method is responsible for creating customers
-        /// </summary>
         public static void InserirCliente () {
             Console.WriteLine ("Informações sobre o cliente: ");
             Console.WriteLine ("Informe o nome: ");
@@ -21,31 +18,22 @@ namespace View {
             ClienteController.InserirCliente(nome, sDtNasc, cpf, qtdDias);
         }
 
-        /// <summary>
-        /// This method is responsible for listing customers
-        /// </summary>
         public static void ListarClientes () {
             Console.WriteLine ("Lista de Clientes: ");
             ClienteController.GetClientes().ForEach (
                 cliente => Console.WriteLine (cliente.ToString (true)));
         }
 
-        /// <summary>
-        /// This method is responsible for consulting a customer
-        /// </summary>
         public static void ConsultarCliente () {
             Cliente cliente;
 
-            // Search the costumer with id
             do {
                 Console.WriteLine ("Informe o cliente que deseja consultar: ");
                 int idCliente = Convert.ToInt32 (Console.ReadLine ());
-                cliente = null; // Reset the value to avoid garbage
-
-                // Try to locate the information in the collection
+                cliente = null;
                 try {
                     cliente = ClienteController.GetCliente(idCliente);
-                    if (cliente == null) { // If the information is not present, a message is returned
+                    if (cliente == null) {
                         Console.WriteLine ("Cliente não localizado, favor digitar outro id.");
                     }
                 } catch {

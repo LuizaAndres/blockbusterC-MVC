@@ -7,29 +7,19 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Models {
     public class Cliente {
-        /* 
-            Getters and Setters 
-        */
-        /// <value>Get and Set the value of ClienteId</value>
         [Key]
         public int ClienteId { get; set; }
-        /// <value>Get and Set the value of nome</value>
         [Required]
         public string Nome { get; set; }
-        /// <value>Get and Set the value of dtNasc</value>
         public DateTime DtNasc { get; set; }
-        /// <value>Get and Set the value of cpf</value>
         public string Cpf { get; set; }
-        /// <value>Get and Set the value of dias</value>
         public int Dias { get; set; }
-        /// <value>Get and Set the value of locacoes</value>
         public ICollection<Locacao> Locacoes { get; set; }
 
         public Cliente(){
             Locacoes = new List<Locacao>();
         }
 
-        /// <summary>Constructor to Cliente object.</summary>
         public static void InserirCliente (string nome, DateTime dtNasc, string cpf, int dias) {
             Cliente cliente = new Cliente {
                 Nome = nome,
@@ -44,13 +34,10 @@ namespace Models {
             db.SaveChanges();
         }
         
-        /// <summary>This method insert a new movie rental for the customer.</summary>
-        /// <param name="locacao">The rental object.</param>
         public void InserirLocacao (Locacao locacao) {
             Locacoes.Add (locacao);
         }
 
-        /// <sumary>This method find a customer.</sumary>
         public static Cliente GetCliente(int ClienteId){
             var db = new Context();
             return (from cliente in db.Clientes
@@ -58,13 +45,11 @@ namespace Models {
                 select cliente).First();
         }
 
-        /// <sumary>This method find return all customers.</sumary>
         public static List<Cliente> GetClientes(){
             var db = new Context();
             return db.Clientes.ToList();
         }
 
-        /// <sumary>This method determines the string convertion.</sumary>
         public string ToString (bool simple = false) {
             Context db = new Context();
             List<Locacao> LocacoesList = (
@@ -101,6 +86,5 @@ namespace Models {
                 $"Data de Nasciment: {dtNasc}\n" +
                 $"Qtd de Filmes: {qtdFilmes}";
         }
-
     }
 }
