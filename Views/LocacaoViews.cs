@@ -4,7 +4,6 @@ using Controllers;
 
 namespace View {
     public class LocacaoView {
-
         public static void InserirLocacao () {
             Console.WriteLine ("Informações sobre a locação: ");
             Cliente cliente;
@@ -22,7 +21,6 @@ namespace View {
                 } catch {
                     Console.WriteLine ("Cliente não localizado, favor digitar outro id.");
                 }
-
             } while (cliente == null);
 
             Locacao locacao = LocacaoController.InserirLocacao(cliente);
@@ -49,7 +47,6 @@ namespace View {
                 }
             } while (filmOpt != 1);
         }
-
         public static void ConsultarLocacao () {
             Locacao locacao;
 
