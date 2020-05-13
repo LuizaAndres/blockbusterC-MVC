@@ -1,13 +1,13 @@
 using System;
-using View;
+using System.Drawing;
+using System.Windows.Forms;
 
-
-namespace csharp_mvc_blockbuster
+namespace View
 {
     class Program
     {
+        [STAThread]
         static void Main () {
-/*
         {
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
@@ -27,7 +27,7 @@ namespace csharp_mvc_blockbuster
         Button btnListaLocacoes;
         Button btnSair;
         public TelaInicial(){
-             this.Text = "BlockBuster";
+            this.Text = "BlockBuster";
             this.BackColor = Color.Beige;
             this.Size = new Size(300,400);
 
@@ -49,21 +49,21 @@ namespace csharp_mvc_blockbuster
             btnListaClientes.Location = new Point(40, 60);
             btnListaClientes.Text = "Listar Clientes";
             this.Controls.Add(btnListaClientes);
-            btnListaClientes.Click += new EventHandler(btnListaClientesClick);
+//            btnListaClientes.Click += new EventHandler(btnListaClientesClick);
 
             btnDetalhaCliente = new Button();
             btnDetalhaCliente.Size = new Size(200, 20);
             btnDetalhaCliente.Location = new Point(40, 90);
             btnDetalhaCliente.Text = "Detalha clientes";
             this.Controls.Add(btnDetalhaCliente);
-            btnDetalhaCliente.Click += new EventHandler(DetalhaClienteClick);
+//            btnDetalhaCliente.Click += new EventHandler(DetalhaClienteClick);
 
             btnCadastraFilme = new Button();
             btnCadastraFilme.Size = new Size(200, 20);
             btnCadastraFilme.Location = new Point(40, 120);
             btnCadastraFilme.Text = "Cadastra Filme";
             this.Controls.Add(btnCadastraFilme);
-            btnCadastraFilme.Click += new EventHandler(CadastraFilmeClick);
+//            btnCadastraFilme.Click += new EventHandler(CadastraFilmeClick);
 
             btnListaFilmes = new Button();
             btnListaFilmes.Size = new Size(200, 20);
@@ -107,11 +107,13 @@ namespace csharp_mvc_blockbuster
         }
         public void btnCadastraClienteClick(object sender, EventArgs e)
         {
-            this.Hide();
-            CadastraCliente cadastraCliente = new CadastraCliente();
+            CadastraCliente cadastraCliente = new CadastraCliente(this);
             cadastraCliente.Show();
+            this.Hide();
+            
+            
         }
-        private void btnListaClientesClick(object sender, EventArgs e)
+        /*private void btnListaClientesClick(object sender, EventArgs e)
         {
             this.Hide();
             ListaClientes listaClientes = new ListaClientes();
@@ -128,10 +130,11 @@ namespace csharp_mvc_blockbuster
             this.Hide();
             DetalhaCliente DetalhaClienteClick = new DetalhaCliente();
             DetalhaClienteClick.Show();
-        }
+        } */
     }  
-} */
-            Console.WriteLine ("============ Blockbuster! ============ ");
+}
+} 
+            /*Console.WriteLine ("============ Blockbuster! ============ ");
             int opt;
             do {
                 // Menu
@@ -184,4 +187,4 @@ namespace csharp_mvc_blockbuster
             } while (opt != 0);
         }
     }
-}
+}*/

@@ -9,14 +9,19 @@ namespace Controllers {
             string sDtNasc,
             string cpf,
             int qtdDias
-        ) {
+        ) 
+        {
             DateTime dtNasc;
+            if(cpf.Length!=14)
+            {
+                throw new Exception ("CPF deve ter 11 digitos");
+            }
             try {
                 dtNasc = Convert.ToDateTime (sDtNasc);
             } catch {
-                Console.WriteLine ("Formato inválido de data, será utilizada a data atual pra cadastro");
-                dtNasc = DateTime.Now;
+               throw new Exception("Data inválida");
             }
+            //int qtdDias = Int32.Parse(sQtdDias);
 
             Cliente.InserirCliente (nome, dtNasc, cpf, qtdDias);
         }
@@ -24,8 +29,6 @@ namespace Controllers {
         public static Cliente GetCliente (int idCliente){
             return Cliente.GetCliente(idCliente);
         }
-
-
         public static List<Cliente> GetClientes (){
             return Cliente.GetClientes();
         }
