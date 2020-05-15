@@ -9,19 +9,19 @@ namespace View
     {
         Form parent;
         Label lblNome;
-        Label lblDtNasc;
-        Label lblCpf;
-        Label lblDiasDev;
         RichTextBox rtxtNome;
+        Label lblDtNasc;
         MaskedTextBox txtDtNasc;
+        Label lblCpf;
         MaskedTextBox txtCpf;
+        Label lblDiasDev;
+        NumericUpDown numDiasDev;
         CheckBox chbAtivo;
         GroupBox gbGenero;
         RadioButton rbSexoMasc;
         RadioButton rbSexoFem;
         Button btnConfirma;
         Button btnCancela;
-        NumericUpDown numDiasDev;
         LinkLabel linkHelp;
         public CadastraCliente(Form parent)
         {
@@ -113,14 +113,14 @@ namespace View
 
             btnConfirma = new Button();
             btnConfirma.Size = new Size(80, 20);
-            btnConfirma.Location = new Point(x, 270);
+            btnConfirma.Location = new Point(x, 300);
             btnConfirma.Text = "Confirma";
             this.Controls.Add(btnConfirma);
             btnConfirma.Click += new EventHandler(btnConfirmaClick);
 
             btnCancela = new Button();
             btnCancela.Size = new Size(80, 20);
-            btnCancela.Location = new Point(x + 100, 270);
+            btnCancela.Location = new Point(120, 300);
             btnCancela.Text = "Cancela";
             this.Controls.Add(btnCancela);
             btnCancela.Click += new EventHandler(btnCancelaClick);

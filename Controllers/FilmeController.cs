@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Controllers {
     public class FilmeController {
-        public static void InserirFilme(string nome, string sDtLancamento, string cpf, double valor, int estoque)
+        public static void InserirFilme(string nome, string sDtLancamento, string sinopse, double valor, int estoque)
         {
             DateTime dtLancamento;
             try {
@@ -14,7 +14,7 @@ namespace Controllers {
                 dtLancamento = DateTime.Now;
             }
 
-            Filme.InserirFilme (nome, dtLancamento, cpf, valor, estoque);
+            Filme.InserirFilme (nome, dtLancamento, sinopse, valor, estoque);
         }
 
         public static Filme GetFilme (int idFilme){

@@ -49,7 +49,7 @@ namespace View
             btnListaClientes.Location = new Point(40, 60);
             btnListaClientes.Text = "Listar Clientes";
             this.Controls.Add(btnListaClientes);
-//            btnListaClientes.Click += new EventHandler(btnListaClientesClick);
+            btnListaClientes.Click += new EventHandler(btnListaClientesClick);
 
             btnDetalhaCliente = new Button();
             btnDetalhaCliente.Size = new Size(200, 20);
@@ -63,7 +63,7 @@ namespace View
             btnCadastraFilme.Location = new Point(40, 120);
             btnCadastraFilme.Text = "Cadastra Filme";
             this.Controls.Add(btnCadastraFilme);
-//            btnCadastraFilme.Click += new EventHandler(CadastraFilmeClick);
+            btnCadastraFilme.Click += new EventHandler(CadastraFilmeClick);
 
             btnListaFilmes = new Button();
             btnListaFilmes.Size = new Size(200, 20);
@@ -113,19 +113,20 @@ namespace View
             
             
         }
-        /*private void btnListaClientesClick(object sender, EventArgs e)
+        private void btnListaClientesClick(object sender, EventArgs e)
         {
             this.Hide();
-            ListaClientes listaClientes = new ListaClientes();
+            ListaClientes listaClientes = new ListaClientes(this);
             listaClientes.Show();
         }
         private void CadastraFilmeClick(object sender, EventArgs e)
         {
-            this.Hide();
-            CadastraFilme CadastraFilmeClick = new CadastraFilme();
+            
+            CadastraFilme CadastraFilmeClick = new CadastraFilme(this);
             CadastraFilmeClick.Show();
+            this.Hide();
         }
-         private void DetalhaClienteClick(object sender, EventArgs e)
+        /*private void DetalhaClienteClick(object sender, EventArgs e)
         {
             this.Hide();
             DetalhaCliente DetalhaClienteClick = new DetalhaCliente();
