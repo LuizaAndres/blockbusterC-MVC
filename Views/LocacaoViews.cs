@@ -2,7 +2,7 @@ using System;
 using Models;
 using Controllers;
 
-namespace View {
+namespace Views {
     public class LocacaoView {
         public static void InserirLocacao () {
             Console.WriteLine ("Informações sobre a locação: ");

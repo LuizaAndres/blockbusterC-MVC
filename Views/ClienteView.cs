@@ -2,7 +2,7 @@ using System;
 using Models;
 using Controllers;
 
-namespace View {
+namespace Views {
     public class ClienteView {
         public static void InserirCliente () {
             Console.WriteLine ("Informações sobre o cliente: ");

@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Controllers;
 
-namespace View
+namespace Views
 {
     public class CadastraFilme : Form
     {

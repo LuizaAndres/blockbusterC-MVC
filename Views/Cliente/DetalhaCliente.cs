@@ -2,7 +2,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace View
+namespace Views
 {
     public class DetalhaCliente : Form {
         Form parent;

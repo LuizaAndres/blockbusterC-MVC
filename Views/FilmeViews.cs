@@ -2,7 +2,7 @@ using System;
 using Models;
 using Controllers;
 
-namespace View {
+namespace Views {
     public class FilmeView {
 
         public static void InserirFilme () {

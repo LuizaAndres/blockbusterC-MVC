@@ -3,8 +3,9 @@ using System.Drawing;
 using System.Windows.Forms;
 using Controllers;
 using Models;
+using static System.Windows.Forms.View;
 
-namespace View
+namespace Views
 {
     public class ListaClientes : Form {
         Form parent;
@@ -21,7 +22,7 @@ namespace View
             lstClientes = new ListView();
             lstClientes.Size = new Size(200,220);
             lstClientes.Location = new Point (20,30);
-            lstClientes.View = View.Details;
+            lstClientes.View = Details;
             ListViewItem[] itens = new ListViewItem[];
             foreach(Cliente cliente in Clientes){
                 ListViewItem cliente = new ListViewItem(cliente.Nome);
