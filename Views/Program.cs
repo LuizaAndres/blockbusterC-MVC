@@ -84,7 +84,7 @@ namespace View
             btnCadastaLocacao.Location = new Point(40, 210);
             btnCadastaLocacao.Text = "Cadastar Locação";
             this.Controls.Add(btnCadastaLocacao);
-            //btnCadastaLocacao.Click += new EventHandler(btnCadastaLocacaoClick);
+            btnCadastaLocacao.Click += new EventHandler(btnCadastaLocacaoClick);
 
             btnListaLocacoes = new Button();
             btnListaLocacoes.Size = new Size(200, 20);
@@ -110,8 +110,6 @@ namespace View
             CadastraCliente cadastraCliente = new CadastraCliente(this);
             cadastraCliente.Show();
             this.Hide();
-            
-            
         }
         private void btnListaClientesClick(object sender, EventArgs e)
         {
@@ -119,6 +117,7 @@ namespace View
             ListaClientes listaClientes = new ListaClientes(this);
             listaClientes.Show();
         }
+
         private void CadastraFilmeClick(object sender, EventArgs e)
         {
             
@@ -132,6 +131,12 @@ namespace View
             DetalhaCliente DetalhaClienteClick = new DetalhaCliente();
             DetalhaClienteClick.Show();
         } */
+        private void btnCadastaLocacaoClick(object sender, EventArgs e)
+        {
+            //this.Hide();
+            CadastraLocacao CadastraLocacaoClick = new CadastraLocacao(this);
+            CadastraLocacaoClick.Show();
+        }
     }  
 }
 } 
