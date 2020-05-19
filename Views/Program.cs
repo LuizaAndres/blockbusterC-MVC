@@ -23,7 +23,6 @@ namespace Views
             Button btnCadastraFilme;
             Button btnListaFilmes;
             Button btnDetalhaFilme;
-            Button btnCadastaLocacao;
             Button btnListaLocacoes;
             Button btnSair;
             public TelaInicial(){
@@ -72,13 +71,6 @@ namespace Views
                 this.Controls.Add(btnDetalhaFilme);
                 //btnDetalhaFilme.Click += new EventHandler(btnDetalhaFilmeClick);
 
-                btnCadastaLocacao = new Button();
-                btnCadastaLocacao.Size = new Size(200, 20);
-                btnCadastaLocacao.Location = new Point(40, 210);
-                btnCadastaLocacao.Text = "Cadastar Locação";
-                this.Controls.Add(btnCadastaLocacao);
-                btnCadastaLocacao.Click += new EventHandler(btnCadastaLocacaoClick);
-
                 btnListaLocacoes = new Button();
                 btnListaLocacoes.Size = new Size(200, 20);
                 btnListaLocacoes.Location = new Point(40, 240);
@@ -120,12 +112,7 @@ namespace Views
                 ListaFilmeClick.Show();
                 this.Hide();
             }
-            private void btnCadastaLocacaoClick(object sender, EventArgs e)
-            {
-                CadastraLocacao CadastraLocacaoClick = new CadastraLocacao(this);
-                CadastraLocacaoClick.Show();
-                this.Hide();
-            }
+            
             private void btnSairClick(object sender, EventArgs e)
             {
                 this.Hide();

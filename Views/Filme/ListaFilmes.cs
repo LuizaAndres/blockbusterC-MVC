@@ -1,12 +1,15 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Controllers;
+using Models;
+using static System.Windows.Forms.View;
 
 namespace Views
 {
     public class ListaFilmes : Form {
         Form parent;
-        ListView lstFilmes;
+        ListView lvFilmes;
         Button btnConfirma;
         Button btnCancela;
         public ListaFilmes(Form parent){
@@ -14,20 +17,19 @@ namespace Views
             this.BackColor = Color.Beige;
             this.Size = new Size(300,400);
 
-            lstFilmes = new ListView();
-            lstFilmes.Size = new Size(200,220);
-            lstFilmes.Location = new Point (20,30);
-           /*  lstFilmes.View = View.Details;
-            ListViewItem[] itens = new ListViewItem[];
-            foreach(Filme filme in Filmes){
-                ListViewItem filme = new ListViewItem(filme.Nome);
-                filme.SubItems.Add(filme.valor);
-                itens.add(filme);
-
-            } */
-            lstFilmes.Columns.Add("Nome", -2, HorizontalAlignment.Left);
-            lstFilmes.Columns.Add("Valor", -2, HorizontalAlignment.Left);
-            this.Controls.Add(lstFilmes);
+            lvFilmes = new ListView();
+            lvFilmes.Size = new Size(200,220);
+            lvFilmes.Location = new Point (20,30);
+            lvFilmes.View = Details;
+            ListViewItem Filmes = new ListViewItem();
+            foreach(Filme filme in FilmeController.GetFilmes()){
+                ListViewItem lvFilme = new ListViewItem(filme.NomeFilme);
+                //lvFilme.SubItems.Add(//valor do filme);
+            } 
+            
+            lvFilmes.Columns.Add("Nome", -2, HorizontalAlignment.Left);
+            lvFilmes.Columns.Add("Valor", -2, HorizontalAlignment.Left);
+            this.Controls.Add(lvFilmes);
 
             btnConfirma = new Button();
             btnConfirma.Size = new Size(80, 20);

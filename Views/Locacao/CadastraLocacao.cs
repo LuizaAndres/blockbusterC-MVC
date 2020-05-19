@@ -1,17 +1,23 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Controllers;
+using Models;
 
-namespace View
+namespace Views
 {
     public class CadastraLocacao : Form {
         Form parent;
         Label lblCliente;
-        ComboBox cbCliente;
+        Label lblFilme;
+        ComboBox cbFilme;
         Button btnConfirma;
         Button btnCancela;
-        public CadastraLocacao(Form parent){
+        Cliente clienteLocal;
+        public CadastraLocacao(Form parent,Cliente clienteDetalhaCliente){
             this.parent = parent;
+
+            this.clienteLocal = clienteDetalhaCliente;
 
             this.Text = "Locacao";
             this.BackColor = Color.Beige;
@@ -19,19 +25,24 @@ namespace View
 
             lblCliente = new Label();
             lblCliente.Location = new Point(20,20);
-            lblCliente.Text = "Cliente: ";
-
-            cbCliente = new ComboBox();
-            cbCliente.Location = new Point(130,20);
-            cbCliente.Name = "Clientes";
-            cbCliente.DropDownWidth = 250;
-           /*  foreach (cliente.nome in Clientes)
-            {
-                cbCliente.Items.Add(ClientRectangle.nome);
-            } */
-
+            lblCliente.Text = clienteLocal.Nome;
             this.Controls.Add(lblCliente);
-            this.Controls.Add(cbCliente);
+
+            lblFilme = new Label();
+            lblFilme.Location = new Point(20,50);
+            lblFilme.Text = "Filme";
+            this.Controls.Add(lblFilme);
+
+            cbFilme = new ComboBox();
+            cbFilme.Location = new Point(20,80);
+            cbFilme.Name = "Filmes";
+            cbFilme.DropDownWidth = 250;
+            this.Controls.Add(cbFilme);
+            foreach (Filme filme in FilmeController.GetFilmes()){
+                cbFilme.Items.Add($"Nome: {filme.NomeFilme}" +$" R$: {filme.Valor}");
+            }
+            
+            
             
             btnConfirma = new Button();
             btnConfirma.Size = new Size(80, 20);
@@ -50,7 +61,7 @@ namespace View
         private void btnConfirmaClick(object sender, EventArgs e)
         {
             MessageBox.Show(
-                $"Nome: {this.cbCliente.Text}\n",
+                $"Nome: {this.cbFilme.Text}\n",
                 "Cliente",
                 MessageBoxButtons.OK
                 );

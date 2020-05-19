@@ -34,32 +34,39 @@ namespace Views
             lblNome = new Label();
             lblNome.Text = "Nome: ";
             lblNome.Location = new Point(x, 20);
+            this.Controls.Add(lblNome);
 
             rtxtNome = new RichTextBox();
             rtxtNome.Location = new Point(130, 20);
             rtxtNome.Size = new Size(110, 20);
+            this.Controls.Add(rtxtNome);
 
             lblDtNasc = new Label();
             lblDtNasc.Text = "Dt. Nasc:";
             lblDtNasc.Location = new Point(x, 50);
+            this.Controls.Add(lblDtNasc);
 
             txtDtNasc = new MaskedTextBox();
             txtDtNasc.Location = new Point(130, 50);
             txtDtNasc.Size = new Size(110, 20);
             txtDtNasc.Mask = "00/00/0000";
+            this.Controls.Add(txtDtNasc);
 
             lblCpf = new Label();
             lblCpf.Text = "CPF: ";
             lblCpf.Location = new Point(x, 80);
+            this.Controls.Add(lblCpf);
 
             txtCpf = new MaskedTextBox();
             txtCpf.Location = new Point(130, 80);
             txtCpf.Size = new Size(110, 20);
             txtCpf.Mask = "000.000.000-00";
+            this.Controls.Add(txtCpf);
 
             lblDiasDev = new Label();
             lblDiasDev.Text = "Dias Dev.: ";
             lblDiasDev.Location = new Point(x, 110);
+            this.Controls.Add(lblDiasDev);
 
             numDiasDev = new NumericUpDown();
             numDiasDev.Location = new Point(130, 110);
@@ -68,28 +75,30 @@ namespace Views
             numDiasDev.Minimum = 5;
             numDiasDev.Increment = 5;
             numDiasDev.ReadOnly = true;
+            this.Controls.Add(numDiasDev);
 
             chbAtivo = new CheckBox();
             chbAtivo.Location = new Point (130,140);
             chbAtivo.Size = new Size (110,20);
             chbAtivo.Text = "Ativo?";
+            this.Controls.Add(chbAtivo);
 
             gbGenero = new GroupBox();
             gbGenero.Location = new Point (130,170);
             gbGenero.Size = new Size (110,80);
             gbGenero.Text = "Genero";
+            this.Controls.Add(gbGenero);
 
             rbSexoMasc = new RadioButton();
             rbSexoMasc.Location = new Point(5,20);
             rbSexoMasc.Size = new Size (110,20);
             rbSexoMasc.Text = "Masculino";
+            gbGenero.Controls.Add(rbSexoMasc);
 
             rbSexoFem = new RadioButton();
             rbSexoFem.Location = new Point(5,50);
             rbSexoFem.Size = new Size (110,20);
             rbSexoFem.Text = "Feminino";
-
-            gbGenero.Controls.Add(rbSexoMasc);
             gbGenero.Controls.Add(rbSexoFem);
 
             linkHelp = new LinkLabel();
@@ -98,16 +107,6 @@ namespace Views
             linkHelp.Text = "Ajuda";
             linkHelp.LinkClicked += new LinkLabelLinkClickedEventHandler(helpLink);
  
-            this.Controls.Add(lblNome);
-            this.Controls.Add(rtxtNome);
-            this.Controls.Add(lblDtNasc);
-            this.Controls.Add(txtDtNasc);
-            this.Controls.Add(lblCpf);
-            this.Controls.Add(txtCpf);
-            this.Controls.Add(lblDiasDev);
-            this.Controls.Add(numDiasDev);
-            this.Controls.Add(chbAtivo);
-            this.Controls.Add(gbGenero);
             this.Controls.Add(linkHelp);
             this.Size = new Size(300, 400);
 
