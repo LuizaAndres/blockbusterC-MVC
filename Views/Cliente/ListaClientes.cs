@@ -11,7 +11,7 @@ namespace Views
         Form parent;
         ListView lvClientes;
         Button btnSelecionar;
-        Button btnCancela;
+        Button btnVoltar;
         public ListaClientes(Form parent){
             this.parent = parent;
 
@@ -33,7 +33,6 @@ namespace Views
             lvClientes.Columns.Add("ID", -2, HorizontalAlignment.Left);
             lvClientes.Columns.Add("Nome", -2, HorizontalAlignment.Left);
             lvClientes.Columns.Add("Cpf", -2, HorizontalAlignment.Left);
-            
             this.Controls.Add(lvClientes);
 
             btnSelecionar = new Button();
@@ -43,25 +42,24 @@ namespace Views
             this.Controls.Add(btnSelecionar);
             btnSelecionar.Click += new EventHandler(btnSelecionarClick);
 
-            btnCancela = new Button();
-            btnCancela.Size = new Size(80, 20);
-            btnCancela.Location = new Point(120, 300);
-            btnCancela.Text = "Cancela";
-            this.Controls.Add(btnCancela);
-            btnCancela.Click += new EventHandler(btnCancelaClick);
+            btnVoltar = new Button();
+            btnVoltar.Size = new Size(80, 20);
+            btnVoltar.Location = new Point(120, 300);
+            btnVoltar.Text = "Voltar";
+            this.Controls.Add(btnVoltar);
+            btnVoltar.Click += new EventHandler(btnVoltarClick);
         }
         private void btnSelecionarClick(object sender, EventArgs e)
         {
             string clienteId = this.lvClientes.SelectedItems[0].Text;
-            Cliente cliente = ClienteController.GetCliente( Int32.Parse(clienteId));
+            Cliente cliente = ClienteController.GetCliente(Int32.Parse(clienteId));
             //observar forma facil no futuro
             DetalhaCliente btnSelecionarClick = new DetalhaCliente(this, cliente);
             btnSelecionarClick.Show() ;
             this.Hide();
         }
-        private void btnCancelaClick(object sender, EventArgs e)
+        private void btnVoltarClick(object sender, EventArgs e)
         {
-            MessageBox.Show("Cancelado!!");
             this.Close();
             this.parent.Show();
         }

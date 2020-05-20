@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Drawing;
 using System.Windows.Forms;
 using Controllers;
@@ -10,10 +11,11 @@ namespace Views
         Form parent;
         Label lblCliente;
         Label lblFilme;
-        ComboBox cbFilme;
+        CheckedListBox clbFilme;
         Button btnConfirma;
         Button btnCancela;
         Cliente clienteLocal;
+        Locacao locacao;
         public CadastraLocacao(Form parent,Cliente clienteDetalhaCliente){
             this.parent = parent;
 
@@ -33,16 +35,17 @@ namespace Views
             lblFilme.Text = "Filme";
             this.Controls.Add(lblFilme);
 
-            cbFilme = new ComboBox();
-            cbFilme.Location = new Point(20,80);
-            cbFilme.Name = "Filmes";
-            cbFilme.DropDownWidth = 250;
-            this.Controls.Add(cbFilme);
+            clbFilme = new CheckedListBox();
+            clbFilme.Location = new Point(20,80);
+            clbFilme.Name = "Filmes";
+            clbFilme.Size = new Size(100, 120);
+            clbFilme.ScrollAlwaysVisible = true;
+            clbFilme.CheckOnClick = true;
+            
             foreach (Filme filme in FilmeController.GetFilmes()){
-                cbFilme.Items.Add($"Nome: {filme.NomeFilme}" +$" R$: {filme.Valor}");
+                clbFilme.Items.Add($"Id: {filme.FilmeId} Nome: {filme.NomeFilme} R$: {filme.Valor}");
             }
-            
-            
+            this.Controls.Add(clbFilme);
             
             btnConfirma = new Button();
             btnConfirma.Size = new Size(80, 20);
@@ -60,11 +63,20 @@ namespace Views
         }
         private void btnConfirmaClick(object sender, EventArgs e)
         {
-            MessageBox.Show(
-                $"Nome: {this.cbFilme.Text}\n",
-                "Cliente",
-                MessageBoxButtons.OK
-                );
+            DialogResult result = MessageBox.Show(
+                $"Nome: {this.clienteLocal.Nome}\n" + 
+                $"Filmes Locados: {LocacaoController.GetFilmesLocados(locacao)}\n"+
+                $"Valor da Locação: {LocacaoController.GetValorTotal(locacao)}",
+                "Confirma Locação?",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Question   
+           );
+            if (result == DialogResult.Yes){
+                foreach( Filme filme in clbFilme.CheckedItems)
+                {
+                    LocacaoController.InserirFilme(locacao, filme);
+                }
+           }
             this.Close();
             SelecionaFilme selecionaFilme = new SelecionaFilme(this);
             selecionaFilme.Show();

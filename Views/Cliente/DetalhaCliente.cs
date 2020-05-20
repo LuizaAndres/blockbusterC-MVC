@@ -9,18 +9,18 @@ namespace Views
     public class DetalhaCliente : Form {
         Form parent;
         Button btnLocacao;
-        Button btnCancela;
+        Button btnVoltar;
         Label lblNome;
         Label lblCpf;
         Label lblDiasDev;
         Label lblDtNasc;
 
         int idCliente;
-        Cliente clientaao;
+        Cliente clienteLocal;
         
         public DetalhaCliente(Form parent, Cliente cliente){
             this.idCliente=cliente.ClienteId;
-            this.clientaao = cliente;
+            this.clienteLocal = cliente;
             this.Text = "Cliente";
             this.BackColor = Color.Beige;
             this.Size = new Size(300,400);
@@ -56,22 +56,21 @@ namespace Views
             this.Controls.Add(btnLocacao);
             btnLocacao.Click += new EventHandler(btnLocacaoClick);
 
-            btnCancela = new Button();
-            btnCancela.Size = new Size(80, 20);
-            btnCancela.Location = new Point(120, 270);
-            btnCancela.Text = "Cancela";
-            this.Controls.Add(btnCancela);
-            btnCancela.Click += new EventHandler(btnCancelaClick);  
+            btnVoltar = new Button();
+            btnVoltar.Size = new Size(80, 20);
+            btnVoltar.Location = new Point(120, 270);
+            btnVoltar.Text = "Voltar";
+            this.Controls.Add(btnVoltar);
+            btnVoltar.Click += new EventHandler(btnVoltarClick);  
         }
        private void btnLocacaoClick(object sender, EventArgs e)
         {
-            CadastraLocacao CadastraLocacaoClick = new CadastraLocacao(this,this.clientaao);
+            CadastraLocacao CadastraLocacaoClick = new CadastraLocacao(this,this.clienteLocal);
             CadastraLocacaoClick.Show();
             this.Hide();
         }
-        private void btnCancelaClick(object sender, EventArgs e)
+        private void btnVoltarClick(object sender, EventArgs e)
         {
-            MessageBox.Show("Cancelado!!");
             parent.Show();
             this.Close();
         }

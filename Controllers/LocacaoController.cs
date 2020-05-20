@@ -4,12 +4,6 @@ using Models;
 namespace Controllers {
     public class LocacaoController {
 
-        public static Locacao InserirLocacao(
-            Cliente cliente
-        ){
-            return Locacao.InserirLocacao(cliente, DateTime.Now); 
-        }
-
         public static void InserirFilme(
             Locacao locacao,
             Filme filme
@@ -23,8 +17,14 @@ namespace Controllers {
             foreach (FilmeLocacao filme in locacao.Filmes){
                 valorTotal += filme.Filme.Valor;
             }
-
             return valorTotal;
+        }
+        public static string GetFilmesLocados (Locacao locacao){
+            string todosFilmes = "";
+            foreach (FilmeLocacao filme in locacao.Filmes){
+                todosFilmes = todosFilmes +" "+ filme.Filme.NomeFilme;
+            }
+            return todosFilmes;
         }
 
         public static double GetQtdFilmes (Locacao locacao) {
