@@ -3,6 +3,7 @@ using Models;
 
 namespace Controllers {
     public class LocacaoController {
+        
 
         public static void InserirFilme(
             Locacao locacao,

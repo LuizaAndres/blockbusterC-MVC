@@ -29,7 +29,8 @@ namespace Views
                 lvCliente.SubItems.Add(cliente.Nome);
                 lvCliente.SubItems.Add(cliente.Cpf);
                 lvClientes.Items.Add(lvCliente);
-            } 
+            }
+            lvClientes.FullRowSelect = true;
             lvClientes.Columns.Add("ID", -2, HorizontalAlignment.Left);
             lvClientes.Columns.Add("Nome", -2, HorizontalAlignment.Left);
             lvClientes.Columns.Add("Cpf", -2, HorizontalAlignment.Left);

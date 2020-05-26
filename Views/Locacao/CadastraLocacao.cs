@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Controllers;
 using Models;
+using static System.Windows.Forms.View;
 
 namespace Views
 {
@@ -11,7 +12,7 @@ namespace Views
         Form parent;
         Label lblCliente;
         Label lblFilme;
-        CheckedListBox clbFilme;
+        ListView lvFilme;
         Button btnConfirma;
         Button btnCancela;
         Cliente clienteLocal;
@@ -35,17 +36,22 @@ namespace Views
             lblFilme.Text = "Filme";
             this.Controls.Add(lblFilme);
 
-            clbFilme = new CheckedListBox();
-            clbFilme.Location = new Point(20,80);
-            clbFilme.Name = "Filmes";
-            clbFilme.Size = new Size(100, 120);
-            clbFilme.ScrollAlwaysVisible = true;
-            clbFilme.CheckOnClick = true;
-            
-            foreach (Filme filme in FilmeController.GetFilmes()){
-                clbFilme.Items.Add($"Id: {filme.FilmeId} Nome: {filme.NomeFilme} R$: {filme.Valor}");
+            lvFilme = new ListView();
+            lvFilme.Location = new Point(20,80);
+            lvFilme.Size = new Size(200,220);
+            lvFilme.View = Details;
+            lvFilme.CheckBoxes = true;
+            foreach (Filme filme in FilmeController.GetFilmes())
+            {
+                ListViewItem lvFilme = new ListViewItem(filme.FilmeId.ToString());
+                lvFilme.SubItems.Add(filme.NomeFilme);
+                lvFilme.SubItems.Add(filme.Valor.ToString());
             }
-            this.Controls.Add(clbFilme);
+            lvFilme.FullRowSelect = true;
+            lvFilme.Columns.Add("ID", -2, HorizontalAlignment.Left);
+            lvFilme.Columns.Add("Nome", -2, HorizontalAlignment.Left);
+            lvFilme.Columns.Add("Valor", -2, HorizontalAlignment.Left);
+            this.Controls.Add(lvFilme);
             
             btnConfirma = new Button();
             btnConfirma.Size = new Size(80, 20);
@@ -63,23 +69,34 @@ namespace Views
         }
         private void btnConfirmaClick(object sender, EventArgs e)
         {
+            locacao=new Locacao();
+            locacao.ClienteId=clienteLocal.ClienteId;
+            locacao.Cliente=clienteLocal;
+            string lstFilm = "";
+            double vl = 0;
+            foreach( string filme in lvFilme.CheckedItems)
+                {
+                    lstFilm = lstFilm + filme + "\n" ; 
+                    //vl += filme;
+                }
+            
             DialogResult result = MessageBox.Show(
                 $"Nome: {this.clienteLocal.Nome}\n" + 
-                $"Filmes Locados: {LocacaoController.GetFilmesLocados(locacao)}\n"+
-                $"Valor da Locação: {LocacaoController.GetValorTotal(locacao)}",
+                $"Filmes Locados: "+lstFilm+
+                $"Valor da Locação: " + vl.ToString(),
                 "Confirma Locação?",
                 MessageBoxButtons.OKCancel,
-                MessageBoxIcon.Question   
+                MessageBoxIcon.Question
            );
             if (result == DialogResult.Yes){
-                foreach( Filme filme in clbFilme.CheckedItems)
+                Locacao.InserirLocacao(clienteLocal, DateTime.Now);
+                foreach( Filme filme in lvFilme.CheckedItems)
                 {
                     LocacaoController.InserirFilme(locacao, filme);
                 }
            }
             this.Close();
-            SelecionaFilme selecionaFilme = new SelecionaFilme(this);
-            selecionaFilme.Show();
+            parent.Show();
         }
         private void btnCancelaClick(object sender, EventArgs e)
         {

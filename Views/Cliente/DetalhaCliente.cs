@@ -19,6 +19,7 @@ namespace Views
         Cliente clienteLocal;
         
         public DetalhaCliente(Form parent, Cliente cliente){
+            this.parent = parent;
             this.idCliente=cliente.ClienteId;
             this.clienteLocal = cliente;
             this.Text = "Cliente";
@@ -50,9 +51,9 @@ namespace Views
             this.Controls.Add(lblDtNasc);
 
             btnLocacao = new Button();
-            btnLocacao.Size = new Size(80, 20);
+            btnLocacao.Size = new Size(150, 20);
             btnLocacao.Location = new Point(20, 270);
-            btnLocacao.Text = "Cadastar Locação";
+            btnLocacao.Text = "Nova Locação";
             this.Controls.Add(btnLocacao);
             btnLocacao.Click += new EventHandler(btnLocacaoClick);
 

@@ -16,13 +16,8 @@ namespace Views
         MaskedTextBox txtCpf;
         Label lblDiasDev;
         NumericUpDown numDiasDev;
-        CheckBox chbAtivo;
-        GroupBox gbGenero;
-        RadioButton rbSexoMasc;
-        RadioButton rbSexoFem;
         Button btnConfirma;
         Button btnCancela;
-        LinkLabel linkHelp;
         public CadastraCliente(Form parent)
         {
             this.parent = parent;
@@ -30,6 +25,7 @@ namespace Views
             int x = 20;
             this.Text = "Cadastra Cliente";
             this.BackColor = Color.Beige;
+            this.Size = new Size(300, 400);
 
             lblNome = new Label();
             lblNome.Text = "Nome: ";
@@ -77,39 +73,6 @@ namespace Views
             numDiasDev.ReadOnly = true;
             this.Controls.Add(numDiasDev);
 
-            chbAtivo = new CheckBox();
-            chbAtivo.Location = new Point (130,140);
-            chbAtivo.Size = new Size (110,20);
-            chbAtivo.Text = "Ativo?";
-            this.Controls.Add(chbAtivo);
-
-            gbGenero = new GroupBox();
-            gbGenero.Location = new Point (130,170);
-            gbGenero.Size = new Size (110,80);
-            gbGenero.Text = "Genero";
-            this.Controls.Add(gbGenero);
-
-            rbSexoMasc = new RadioButton();
-            rbSexoMasc.Location = new Point(5,20);
-            rbSexoMasc.Size = new Size (110,20);
-            rbSexoMasc.Text = "Masculino";
-            gbGenero.Controls.Add(rbSexoMasc);
-
-            rbSexoFem = new RadioButton();
-            rbSexoFem.Location = new Point(5,50);
-            rbSexoFem.Size = new Size (110,20);
-            rbSexoFem.Text = "Feminino";
-            gbGenero.Controls.Add(rbSexoFem);
-
-            linkHelp = new LinkLabel();
-            linkHelp.Location = new Point (x, 300);
-            linkHelp.Size = new Size(100,30);
-            linkHelp.Text = "Ajuda";
-            linkHelp.LinkClicked += new LinkLabelLinkClickedEventHandler(helpLink);
- 
-            this.Controls.Add(linkHelp);
-            this.Size = new Size(300, 400);
-
             btnConfirma = new Button();
             btnConfirma.Size = new Size(80, 20);
             btnConfirma.Location = new Point(x, 300);
@@ -124,21 +87,6 @@ namespace Views
             this.Controls.Add(btnCancela);
             btnCancela.Click += new EventHandler(btnCancelaClick);
         }
-        private void helpLink(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            try{
-                VisitLink();
-            }
-            catch (Exception err){
-                MessageBox.Show(err.Message);
-            }
-        }
-        private void VisitLink()
-        {
-            this.linkHelp.LinkVisited = true;
-            System.Diagnostics.Process.Start("C:\\Program Files (x86)\\Google\\Chrome\\Application\\Chrome.exe","http://google.com");
-        }
-        
         private void btnConfirmaClick(object sender, EventArgs e)
         {
             try{
@@ -159,7 +107,6 @@ namespace Views
         }
         private void btnCancelaClick(object sender, EventArgs e)
         {
-            MessageBox.Show("Cancelado!!");
             this.Close();
             this.parent.Show();
         }

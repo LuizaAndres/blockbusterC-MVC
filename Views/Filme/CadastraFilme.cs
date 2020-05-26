@@ -53,7 +53,6 @@ namespace Views
             lblDataLanc.Text = "Dt.Lançamento";
             lblDataLanc.Location = new Point(x,200);
             
-
             txtDataLanc = new MaskedTextBox();
             txtDataLanc.Location = new Point(130, 200);
             txtDataLanc.Mask = "00/00/0000";

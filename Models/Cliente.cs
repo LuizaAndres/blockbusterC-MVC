@@ -69,7 +69,6 @@ namespace Models {
                 } else {
                     retorno += "    Não há locações";
                 }
-
                 return retorno;
             }
 
@@ -79,7 +78,6 @@ namespace Models {
                     where filme.LocacaoId == locacao.LocacaoId
                     select filme).Count();
             }
-
             string dtNasc = DtNasc.ToString("dd/MM/yyyy");
 
             return $"Nome: {Nome}\n" +

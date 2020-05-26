@@ -13,6 +13,7 @@ namespace Views
         Button btnConfirma;
         Button btnCancela;
         public ListaFilmes(Form parent){
+            this.parent = parent;
             this.Text = "Lista Filmes";
             this.BackColor = Color.Beige;
             this.Size = new Size(300,400);
@@ -24,7 +25,7 @@ namespace Views
             ListViewItem Filmes = new ListViewItem();
             foreach(Filme filme in FilmeController.GetFilmes()){
                 ListViewItem lvFilme = new ListViewItem(filme.NomeFilme);
-                //lvFilme.SubItems.Add(//valor do filme);
+                lvFilme.SubItems.Add(filme.Valor.ToString());
             } 
             
             lvFilmes.Columns.Add("Nome", -2, HorizontalAlignment.Left);
@@ -53,7 +54,6 @@ namespace Views
         }
         private void btnCancelaClick(object sender, EventArgs e)
         {
-            MessageBox.Show("Cancelado!!");
             parent.Show();
             this.Close();
         }
