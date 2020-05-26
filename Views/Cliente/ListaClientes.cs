@@ -23,7 +23,7 @@ namespace Views
             lvClientes.Size = new Size(200,220);
             lvClientes.Location = new Point (20,30);
             lvClientes.View = Details;
-            ListViewItem clientes = new ListViewItem();
+
             foreach(Cliente cliente in ClienteController.GetClientes()){
                 ListViewItem lvCliente = new ListViewItem(cliente.ClienteId.ToString());
                 lvCliente.SubItems.Add(cliente.Nome);

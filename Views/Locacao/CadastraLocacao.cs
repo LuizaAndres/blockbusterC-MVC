@@ -12,7 +12,7 @@ namespace Views
         Form parent;
         Label lblCliente;
         Label lblFilme;
-        ListView lvFilme;
+        ListView lvFilmes;
         Button btnConfirma;
         Button btnCancela;
         Cliente clienteLocal;
@@ -36,33 +36,35 @@ namespace Views
             lblFilme.Text = "Filme";
             this.Controls.Add(lblFilme);
 
-            lvFilme = new ListView();
-            lvFilme.Location = new Point(20,80);
-            lvFilme.Size = new Size(200,220);
-            lvFilme.View = Details;
-            lvFilme.CheckBoxes = true;
+            lvFilmes = new ListView();
+            lvFilmes.Size = new Size(200,220);
+            lvFilmes.Location = new Point(20,80);
+            lvFilmes.View = Details;
+            ListViewItem filmes = new ListViewItem();
+            lvFilmes.CheckBoxes = true;
             foreach (Filme filme in FilmeController.GetFilmes())
             {
                 ListViewItem lvFilme = new ListViewItem(filme.FilmeId.ToString());
                 lvFilme.SubItems.Add(filme.NomeFilme);
                 lvFilme.SubItems.Add(filme.Valor.ToString());
+                lvFilmes.Items.Add(lvFilme);
             }
-            lvFilme.FullRowSelect = true;
-            lvFilme.Columns.Add("ID", -2, HorizontalAlignment.Left);
-            lvFilme.Columns.Add("Nome", -2, HorizontalAlignment.Left);
-            lvFilme.Columns.Add("Valor", -2, HorizontalAlignment.Left);
-            this.Controls.Add(lvFilme);
+            lvFilmes.FullRowSelect = true;
+            lvFilmes.Columns.Add("ID", -2, HorizontalAlignment.Left);
+            lvFilmes.Columns.Add("Nome", -2, HorizontalAlignment.Left);
+            lvFilmes.Columns.Add("Valor", -2, HorizontalAlignment.Left);
+            this.Controls.Add(lvFilmes);
             
             btnConfirma = new Button();
             btnConfirma.Size = new Size(80, 20);
-            btnConfirma.Location = new Point(20, 270);
+            btnConfirma.Location = new Point(20, 300);
             btnConfirma.Text = "Confirma";
             this.Controls.Add(btnConfirma);
             btnConfirma.Click += new EventHandler(btnConfirmaClick);
 
             btnCancela = new Button();
             btnCancela.Size = new Size(80, 20);
-            btnCancela.Location = new Point(120, 270);
+            btnCancela.Location = new Point(120, 300);
             btnCancela.Text = "Cancela";
             this.Controls.Add(btnCancela);
             btnCancela.Click += new EventHandler(btnCancelaClick);
@@ -74,23 +76,22 @@ namespace Views
             locacao.Cliente=clienteLocal;
             string lstFilm = "";
             double vl = 0;
-            foreach( string filme in lvFilme.CheckedItems)
+            foreach( ListViewItem filme in lvFilmes.CheckedItems)
                 {
-                    lstFilm = lstFilm + filme + "\n" ; 
-                    //vl += filme;
+                        lstFilm += lstFilm + filme.SubItems[1].Text.ToString();
                 }
             
             DialogResult result = MessageBox.Show(
                 $"Nome: {this.clienteLocal.Nome}\n" + 
                 $"Filmes Locados: "+lstFilm+
-                $"Valor da Locação: " + vl.ToString(),
+                $"Valor da Locação: " ,
                 "Confirma Locação?",
                 MessageBoxButtons.OKCancel,
                 MessageBoxIcon.Question
            );
             if (result == DialogResult.Yes){
                 Locacao.InserirLocacao(clienteLocal, DateTime.Now);
-                foreach( Filme filme in lvFilme.CheckedItems)
+                foreach( Filme filme in lvFilmes.CheckedItems)
                 {
                     LocacaoController.InserirFilme(locacao, filme);
                 }
