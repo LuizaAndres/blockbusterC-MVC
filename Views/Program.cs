@@ -76,7 +76,7 @@ namespace Views
                 btnListaLocacoes.Location = new Point(40, 240);
                 btnListaLocacoes.Text = "Todas as locações";
                 this.Controls.Add(btnListaLocacoes);
-                //btnListaLocacoes.Click += new EventHandler(btnListaLocacoesClick);
+                btnListaLocacoes.Click += new EventHandler(btnListaLocacoesClick);
 
                 btnSair = new Button();
                 btnSair.Size = new Size(200, 20);
@@ -110,6 +110,13 @@ namespace Views
                 
                 ListaFilmes ListaFilmeClick = new ListaFilmes(this);
                 ListaFilmeClick.Show();
+                this.Hide();
+            }
+            private void btnListaLocacoesClick(object sender, EventArgs e)
+            {
+                
+                TodasLocacoes ListaLocacoesClick = new TodasLocacoes(this);
+                ListaLocacoesClick.Show();
                 this.Hide();
             }
             

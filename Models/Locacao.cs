@@ -87,6 +87,10 @@ namespace Models {
                 where locacao.LocacaoId == LocacaoId
                 select locacao).First();
         }
+        public static List<Locacao> GetLocacao(){
+            var db = new Context();
+            return db.Locacoes.ToList();
+        }
 
     }
 }

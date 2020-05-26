@@ -1,5 +1,6 @@
 using System;
 using Models;
+using System.Collections.Generic;
 
 namespace Controllers {
     public class LocacaoController {
@@ -10,6 +11,9 @@ namespace Controllers {
             Filme filme
         ){
             locacao.InserirFilme(filme);
+        }
+        public static List<Locacao> GetLocacoes (){
+            return Locacao.GetLocacao();
         }
 
         public static double GetValorTotal (Locacao locacao) {

@@ -89,12 +89,13 @@ namespace Views
                 MessageBoxButtons.OKCancel,
                 MessageBoxIcon.Question
            );
-            if (result == DialogResult.Yes){
+            if (result == DialogResult.OK){
                 Locacao.InserirLocacao(clienteLocal, DateTime.Now);
                 foreach( Filme filme in lvFilmes.CheckedItems)
                 {
                     LocacaoController.InserirFilme(locacao, filme);
                 }
+
            }
             this.Close();
             parent.Show();
