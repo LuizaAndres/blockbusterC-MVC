@@ -13,7 +13,7 @@ namespace Controllers {
             locacao.InserirFilme(filme);
         }
         public static List<Locacao> GetLocacoes (){
-            return Locacao.GetLocacao();
+            return Locacao.GetLocacoes();
         }
 
         public static double GetValorTotal (Locacao locacao) {

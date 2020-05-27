@@ -87,10 +87,15 @@ namespace Models {
                 where locacao.LocacaoId == LocacaoId
                 select locacao).First();
         }
-        public static List<Locacao> GetLocacao(){
+        public static List<Locacao> GetLocacoes(){
             var db = new Context();
             return db.Locacoes.ToList();
         }
-
+        public void setCliente(){
+            Cliente = Cliente.GetCliente(ClienteId);
+        }
+        public void setLocacaoFilme(){
+            Filmes = FilmeLocacao.GetFilmeLocacao(LocacaoId);
+        }
     }
 }
