@@ -1,15 +1,14 @@
 using System;
-using System.Collections;
 using System.Drawing;
 using System.Windows.Forms;
 using Controllers;
 using Models;
 using static System.Windows.Forms.View;
-
 namespace Views
 {
     public class CadastraLocacao : Form {
         Form parent;
+        Label lblCadastraLocação;
         Label lblCliente;
         Label lblFilme;
         ListView lvFilmes;
@@ -19,26 +18,29 @@ namespace Views
         Locacao locacao;
         public CadastraLocacao(Form parent,Cliente clienteDetalhaCliente){
             this.parent = parent;
-
             this.clienteLocal = clienteDetalhaCliente;
-
             this.Text = "Locacao";
             this.BackColor = Color.Beige;
             this.Size = new Size(300,400);
 
+            lblCadastraLocação = new Label();
+            lblCadastraLocação.Location = new Point(100,30);
+            lblCadastraLocação.Text = "Cadastra Cliente";
+            this.Controls.Add(lblCadastraLocação);
+
             lblCliente = new Label();
-            lblCliente.Location = new Point(20,20);
+            lblCliente.Location = new Point(20,60);
             lblCliente.Text = clienteLocal.Nome;
             this.Controls.Add(lblCliente);
 
             lblFilme = new Label();
-            lblFilme.Location = new Point(20,50);
+            lblFilme.Location = new Point(20,90);
             lblFilme.Text = "Filme";
             this.Controls.Add(lblFilme);
 
             lvFilmes = new ListView();
-            lvFilmes.Size = new Size(200,220);
-            lvFilmes.Location = new Point(20,80);
+            lvFilmes.Size = new Size(200,100);
+            lvFilmes.Location = new Point(20,120);
             lvFilmes.View = Details;
             ListViewItem filmes = new ListViewItem();
             lvFilmes.CheckBoxes = true;
@@ -80,7 +82,6 @@ namespace Views
                 {
                     lstFilm += lstFilm + filme.SubItems[1].Text.ToString();
                 }
-            
             DialogResult result = MessageBox.Show(
                 $"Nome: {this.clienteLocal.Nome}\n" + 
                 $"Filmes Locados: "+lstFilm+

@@ -4,26 +4,29 @@ using System.Windows.Forms;
 using Controllers;
 using Models;
 using static System.Windows.Forms.View;
-
 namespace Views
 {
     public class ListaClientes : Form {
         Form parent;
+        Label lblListaCliente;
         ListView lvClientes;
         Button btnSelecionar;
         Button btnVoltar;
         public ListaClientes(Form parent){
             this.parent = parent;
-
             this.Text = "Lista Cliente";
             this.BackColor = Color.Beige;
             this.Size = new Size(300,400);
 
-            lvClientes = new ListView();
-            lvClientes.Size = new Size(200,220);
-            lvClientes.Location = new Point (20,30);
-            lvClientes.View = Details;
+            lblListaCliente = new Label();
+            lblListaCliente.Location = new Point(100,10);
+            lblListaCliente.Text = "Lista de Clientes";
+            this.Controls.Add(lblListaCliente);
 
+            lvClientes = new ListView();
+            lvClientes.Size = new Size(250,150);
+            lvClientes.Location = new Point (20,50);
+            lvClientes.View = Details;
             foreach(Cliente cliente in ClienteController.GetClientes()){
                 ListViewItem lvCliente = new ListViewItem(cliente.ClienteId.ToString());
                 lvCliente.SubItems.Add(cliente.Nome);
@@ -39,13 +42,13 @@ namespace Views
             btnSelecionar = new Button();
             btnSelecionar.Size = new Size(80, 20);
             btnSelecionar.Location = new Point(20, 300);
-            btnSelecionar.Text = "Selecionar";
+            btnSelecionar.Text = "Detalhar";
             this.Controls.Add(btnSelecionar);
             btnSelecionar.Click += new EventHandler(btnSelecionarClick);
 
             btnVoltar = new Button();
             btnVoltar.Size = new Size(80, 20);
-            btnVoltar.Location = new Point(120, 300);
+            btnVoltar.Location = new Point(180, 300);
             btnVoltar.Text = "Voltar";
             this.Controls.Add(btnVoltar);
             btnVoltar.Click += new EventHandler(btnVoltarClick);
@@ -54,7 +57,6 @@ namespace Views
         {
             string clienteId = this.lvClientes.SelectedItems[0].Text;
             Cliente cliente = ClienteController.GetCliente(Int32.Parse(clienteId));
-            //observar forma facil no futuro
             DetalhaCliente btnSelecionarClick = new DetalhaCliente(this, cliente);
             btnSelecionarClick.Show() ;
             this.Hide();

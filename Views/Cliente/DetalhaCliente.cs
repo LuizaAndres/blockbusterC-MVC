@@ -1,65 +1,69 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Controllers;
 using Models;
-
 namespace Views
 {
     public class DetalhaCliente : Form {
         Form parent;
+        Label lblDetalhaCliente;
         Button btnLocacao;
         Button btnVoltar;
         Label lblNome;
         Label lblCpf;
         Label lblDiasDev;
         Label lblDtNasc;
-
         int idCliente;
         Cliente clienteLocal;
-        
+
         public DetalhaCliente(Form parent, Cliente cliente){
             this.parent = parent;
             this.idCliente=cliente.ClienteId;
             this.clienteLocal = cliente;
-            this.Text = "Cliente";
+            this.Text = "Detalha Cliente";
             this.BackColor = Color.Beige;
             this.Size = new Size(300,400);
 
+            lblDetalhaCliente = new Label();
+            lblDetalhaCliente.Location = new Point(90,30);
+            lblDetalhaCliente.AutoSize = true;
+            lblDetalhaCliente.Text = "Detalhes do Cliente";
+            this.Controls.Add(lblDetalhaCliente);
+
             lblNome = new Label();
-            lblNome.Text = cliente.Nome;
-            lblNome.BackColor = Color.White;
-            lblNome.Location = new Point(20, 20);
+            lblNome.AutoSize = true;
+            lblNome.Location = new Point(20, 60);
+            lblNome.Text = $"Nome: {cliente.Nome}";
             this.Controls.Add(lblNome);
 
             lblCpf = new Label();
-            lblCpf.Text = cliente.Cpf;
-            lblCpf.BackColor = Color.White;
-            lblCpf.Location = new Point(20, 50);
+            lblCpf.Location = new Point(20, 90);
+            lblCpf.AutoSize = true;
+            lblCpf.Text = $"CPF: {cliente.Cpf}";
             this.Controls.Add(lblCpf);
 
             lblDiasDev = new Label();
-            lblDiasDev.Text = cliente.Dias.ToString();
-            lblDiasDev.BackColor = Color.White;
-            lblDiasDev.Location = new Point(20, 80);
+            lblDiasDev.Location = new Point(20, 120);
+            lblDiasDev.AutoSize = true;
+            lblDiasDev.Text = $"Dias Devolução: {cliente.Dias.ToString()}";
             this.Controls.Add(lblDiasDev);
 
             lblDtNasc = new Label();
-            lblDtNasc.Text = cliente.DtNasc.ToString();
-            lblDtNasc.BackColor = Color.White;
-            lblDtNasc.Location = new Point(20, 110);
+            lblDtNasc.Location = new Point(20, 150);
+            lblDtNasc.AutoSize = true;
+            lblDtNasc.Text = $"Data de Nascimento: {cliente.DtNasc.ToShortDateString()}";
             this.Controls.Add(lblDtNasc);
 
             btnLocacao = new Button();
-            btnLocacao.Size = new Size(150, 20);
-            btnLocacao.Location = new Point(20, 270);
+            btnLocacao.Size = new Size(130, 20);
+            btnLocacao.Location = new Point(20, 300);
             btnLocacao.Text = "Nova Locação";
             this.Controls.Add(btnLocacao);
             btnLocacao.Click += new EventHandler(btnLocacaoClick);
 
             btnVoltar = new Button();
             btnVoltar.Size = new Size(80, 20);
-            btnVoltar.Location = new Point(120, 270);
+            btnVoltar.Location = new Point(170, 300);
             btnVoltar.Text = "Voltar";
             this.Controls.Add(btnVoltar);
             btnVoltar.Click += new EventHandler(btnVoltarClick);  

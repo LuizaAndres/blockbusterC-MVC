@@ -4,13 +4,13 @@ using System.Windows.Forms;
 using Controllers;
 using Models;
 using static System.Windows.Forms.View;
-
 namespace Views
 {
     public class ListaFilmes : Form {
         Form parent;
+        Label listaDeFilmes;
         ListView lvFilmes;
-        Button btnConfirma;
+        Button btnDetalhaFilme;
         Button btnCancela;
         public ListaFilmes(Form parent){
             this.parent = parent;
@@ -18,9 +18,14 @@ namespace Views
             this.BackColor = Color.Beige;
             this.Size = new Size(300,400);
 
-             lvFilmes = new ListView();
-            lvFilmes.Size = new Size(200,220);
-            lvFilmes.Location = new Point(20,80);
+            listaDeFilmes = new Label();
+            listaDeFilmes.Location = new Point(100,30);
+            listaDeFilmes.Text = "Lista de Filmes";
+            this.Controls.Add(listaDeFilmes);
+
+            lvFilmes = new ListView();
+            lvFilmes.Size = new Size(250,200);
+            lvFilmes.Location = new Point(20,60);
             lvFilmes.View = Details;
             ListViewItem filmes = new ListViewItem();
             foreach (Filme filme in FilmeController.GetFilmes())
@@ -36,25 +41,28 @@ namespace Views
             lvFilmes.Columns.Add("Valor", -2, HorizontalAlignment.Left);
             this.Controls.Add(lvFilmes);
 
-            btnConfirma = new Button();
-            btnConfirma.Size = new Size(80, 20);
-            btnConfirma.Location = new Point(20, 300);
-            btnConfirma.Text = "Confirma";
-            this.Controls.Add(btnConfirma);
-            btnConfirma.Click += new EventHandler(btnConfirmaClick);
+            btnDetalhaFilme = new Button();
+            btnDetalhaFilme.Size = new Size(80, 20);
+            btnDetalhaFilme.Location = new Point(20, 300);
+            btnDetalhaFilme.Text = "Detalha";
+            this.Controls.Add(btnDetalhaFilme);
+            btnDetalhaFilme.Click += new EventHandler(btnDetalhaFilmeClick);
 
             btnCancela = new Button();
             btnCancela.Size = new Size(80, 20);
-            btnCancela.Location = new Point(120, 300);
-            btnCancela.Text = "Cancela";
+            btnCancela.Location = new Point(180, 300);
+            btnCancela.Text = "Voltar";
             this.Controls.Add(btnCancela);
             btnCancela.Click += new EventHandler(btnCancelaClick);
         }
-        private void btnConfirmaClick(object sender, EventArgs e)
+         private void btnDetalhaFilmeClick(object sender, EventArgs e)
         {
-            parent.Show();
-            this.Close();
-        }
+            string filmeId = this.lvFilmes.SelectedItems[0].Text;
+            Filme filme = FilmeController.GetFilme(Int32.Parse(filmeId));
+            DetalhaFilme btnSelecionarClick = new DetalhaFilme(this, filme);
+            btnSelecionarClick.Show() ;
+            this.Hide();
+        } 
         private void btnCancelaClick(object sender, EventArgs e)
         {
             parent.Show();

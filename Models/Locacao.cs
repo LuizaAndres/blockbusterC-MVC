@@ -4,7 +4,6 @@ using System.Linq;
 using Controllers;
 using Repositories;
 using System.ComponentModel.DataAnnotations;
-
 namespace Models {
     public class Locacao {
         public int LocacaoId { get; set; }
@@ -13,7 +12,6 @@ namespace Models {
         [Required]
         public DateTime DtLocacao { get; set; }
         public ICollection<FilmeLocacao> Filmes { get; set; }
-
         public Locacao(){
             Filmes = new List<FilmeLocacao>();
         }
@@ -23,16 +21,12 @@ namespace Models {
                 DtLocacao = dtLocacao,
                 Filmes = new List<FilmeLocacao> ()
             };
-
             cliente.InserirLocacao (locacao);
-
             var db = new Context();
             db.Locacoes.Add(locacao);
             db.SaveChanges();
-
             return locacao;
         }
-
         public void InserirFilme (Filme filme) {
             var db = new Context();
 
@@ -40,26 +34,22 @@ namespace Models {
                 FilmeId = filme.FilmeId,
                 LocacaoId = LocacaoId
             };
-
             db.FilmeLocacao.Add(filmeLocacao);
             db.SaveChanges();
             Filmes.Add (filmeLocacao);
             filme.Locacoes.Add(filmeLocacao);
         }
-
         public override string ToString () {
             var db = new Context();
             Cliente cliente = (
                     from cli in db.Clientes
                     where cli.ClienteId == ClienteId
                     select cli).First();
-            string retorno = $"Cliente: {cliente.Nome}\n" +
-                $"Data da Locacao: {DtLocacao}\n" +
-                $"Data de Devolucao: {LocacaoController.GetDataDevolucao(DtLocacao, cliente)}\n";
-
-            double valorTotal = 0;
-            string strFilmes = "";
-
+                string retorno = $"Cliente: {cliente.Nome}\n" +
+                    $"Data da Locacao: {DtLocacao}\n" +
+                    $"Data de Devolucao: {LocacaoController.GetDataDevolucao(DtLocacao, cliente)}\n";
+                double valorTotal = 0;
+                string strFilmes = "";
             IEnumerable<int> filmes = 
                 from filme in db.FilmeLocacao
                     where filme.LocacaoId == LocacaoId
@@ -73,19 +63,10 @@ namespace Models {
             } else {
                 strFilmes += "    Não há filmes";
             }
-
             retorno += $"Valor Total: {valorTotal:C2}\n" +
                 "   Filmes:\n" +
                 strFilmes;
-
             return retorno;
-        }
-
-        public static Locacao GetLocacao(int LocacaoId){
-            var db = new Context();
-            return (from locacao in db.Locacoes
-                where locacao.LocacaoId == LocacaoId
-                select locacao).First();
         }
         public static List<Locacao> GetLocacoes(){
             var db = new Context();

@@ -9,7 +9,7 @@ namespace Controllers {
             string sDtNasc,
             string cpf,
             int qtdDias
-        ) 
+            ) 
         {
             DateTime dtNasc;
             if(cpf.Length!=14)
@@ -21,11 +21,8 @@ namespace Controllers {
             } catch {
                throw new Exception("Data inválida");
             }
-            //int qtdDias = Int32.Parse(sQtdDias);
-
             Cliente.InserirCliente (nome, dtNasc, cpf, qtdDias);
         }
-
         public static Cliente GetCliente (int idCliente){
             return Cliente.GetCliente(idCliente);
         }
