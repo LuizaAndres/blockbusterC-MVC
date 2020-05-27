@@ -75,10 +75,10 @@ namespace Views
             locacao.ClienteId=clienteLocal.ClienteId;
             locacao.Cliente=clienteLocal;
             string lstFilm = "";
-            double vl = 0;
+            //double vl = 0;
             foreach( ListViewItem filme in lvFilmes.CheckedItems)
                 {
-                        lstFilm += lstFilm + filme.SubItems[1].Text.ToString();
+                    lstFilm += lstFilm + filme.SubItems[1].Text.ToString();
                 }
             
             DialogResult result = MessageBox.Show(
@@ -90,12 +90,14 @@ namespace Views
                 MessageBoxIcon.Question
            );
             if (result == DialogResult.OK){
-                Locacao.InserirLocacao(clienteLocal, DateTime.Now);
-                foreach( Filme filme in lvFilmes.CheckedItems)
+                Locacao locacaoLocal = Locacao.InserirLocacao(clienteLocal, DateTime.Now);
+                foreach( ListViewItem filmeChecado in lvFilmes.CheckedItems)
                 {
-                    LocacaoController.InserirFilme(locacao, filme);
+                    string sFilmeId = filmeChecado.Text;
+                    int filmeId = Convert.ToInt32(sFilmeId);
+                    Filme filme = FilmeController.GetFilme(filmeId);
+                    LocacaoController.InserirFilme(locacaoLocal, filme);
                 }
-
            }
             this.Close();
             parent.Show();
