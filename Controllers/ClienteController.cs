@@ -21,6 +21,9 @@ namespace Controllers {
             } catch {
                throw new Exception("Data inválida");
             }
+            if(nome.Length==0){
+                throw new Exception ("Digite um nome válido");
+            }
             Cliente.InserirCliente (nome, dtNasc, cpf, qtdDias);
         }
         public static Cliente GetCliente (int idCliente){

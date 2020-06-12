@@ -55,11 +55,15 @@ namespace Views
         }
         private void btnSelecionarClick(object sender, EventArgs e)
         {
-            string clienteId = this.lvClientes.SelectedItems[0].Text;
-            Cliente cliente = ClienteController.GetCliente(Int32.Parse(clienteId));
-            DetalhaCliente btnSelecionarClick = new DetalhaCliente(this, cliente);
-            btnSelecionarClick.Show() ;
-            this.Hide();
+            try{
+                string clienteId = this.lvClientes.SelectedItems[0].Text;
+                Cliente cliente = ClienteController.GetCliente(Int32.Parse(clienteId));
+                DetalhaCliente btnSelecionarClick = new DetalhaCliente(this, cliente);
+                btnSelecionarClick.Show() ;
+                this.Hide();
+             }catch (Exception err){
+                MessageBox.Show(err.Message, "Selecione um cliente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void btnVoltarClick(object sender, EventArgs e)
         {

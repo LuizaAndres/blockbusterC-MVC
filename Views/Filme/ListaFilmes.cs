@@ -57,11 +57,15 @@ namespace Views
         }
          private void btnDetalhaFilmeClick(object sender, EventArgs e)
         {
+            try{
             string filmeId = this.lvFilmes.SelectedItems[0].Text;
             Filme filme = FilmeController.GetFilme(Int32.Parse(filmeId));
             DetalhaFilme btnSelecionarClick = new DetalhaFilme(this, filme);
             btnSelecionarClick.Show() ;
             this.Hide();
+            }catch (Exception err){
+                MessageBox.Show(err.Message, "Selecione um filme", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         } 
         private void btnCancelaClick(object sender, EventArgs e)
         {

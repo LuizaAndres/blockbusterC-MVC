@@ -29,19 +29,55 @@ namespace Models {
             db.Clientes.Add(cliente);
             db.SaveChanges();
         }
+        public static void UpdateCliente(
+            int id, string nome, DateTime dtNasc, string cpf, int dias)
+        {
+            Context db = new Context();
+            try{
+            Cliente cliente = db.Clientes
+                .First(cliente => cliente.ClienteId == id);
+            cliente.Nome = nome;
+                cliente.DtNasc = dtNasc;
+                cliente.Cpf = cpf;
+                cliente.Dias = dias;
+            db.SaveChanges();
+            }catch {
+                //trowerror
+            }
+        }
+        public static void DeleteCliente(int id)
+        {
+            Context db = new Context();
+            try
+            {
+                Cliente cliente = db.Clientes.First(cliente => cliente.ClienteId == id);
+                db.Remove(cliente);
+                try
+                {
+                    db.SaveChanges();
+                } catch {
+                    //throw error();
+                }
+                }catch{//throw error}
+            }
+        }
+
         public void InserirLocacao (Locacao locacao) {
             Locacoes.Add (locacao);
         }
+        
         public static Cliente GetCliente(int ClienteId){
             var db = new Context();
             return (from cliente in db.Clientes
                 where cliente.ClienteId == ClienteId
                 select cliente).First();
         }
+
         public static List<Cliente> GetClientes(){
             var db = new Context();
             return db.Clientes.ToList();
         }
+
         public string ToString (bool simple = false) {
             Context db = new Context();
             List<Locacao> LocacoesList = (
