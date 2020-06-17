@@ -19,5 +19,17 @@ namespace Views
             CadastraLocacaoClick.Show();
             this.Hide();
         }
+        private void btnAtualizarClick(object sender, EventArgs e)
+        {
+            CadastraCliente btnAtualizarClick = new CadastraCliente(this,this.clienteLocal);
+            btnAtualizarClick.Show();
+            this.Hide();
+        }
+        private void btnDeletarClick(object sender, EventArgs e)
+        {
+            CadastraLocacao CadastraLocacaoClick = new CadastraLocacao(this,this.clienteLocal);
+            CadastraLocacaoClick.Show();
+            this.Hide();
+        }
     }
 }

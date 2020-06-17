@@ -18,12 +18,17 @@ namespace Views
         Button btnConfirma;
         Button btnCancela;
 
-        public void InitializeComponent(Form parent){
+        public void InitializeComponent(Form parent, bool isUpdate){
 
             lblCadastraCliente = new Label();
             lblCadastraCliente.Location = new Point(100,10);
             lblCadastraCliente.Text = "Cadastra Cliente";
             this.Controls.Add(lblCadastraCliente);
+
+            if (isUpdate){
+                this.Load+=new EventHandler(this.LoadForm);
+            }
+
 
             lblNome = new Label();
             lblNome.Location = new Point(20, 50);
@@ -55,6 +60,7 @@ namespace Views
             txtCpf.Location = new Point(130, 110);
             txtCpf.Size = new Size(110, 20);
             txtCpf.Mask = "000.000.000-00";
+            this.txtCpf.ReadOnly = isUpdate;
             this.Controls.Add(txtCpf);
 
             lblDiasDev = new Label();

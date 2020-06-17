@@ -29,20 +29,21 @@ namespace Models {
             db.Clientes.Add(cliente);
             db.SaveChanges();
         }
-        public static void UpdateCliente(
-            int id, string nome, DateTime dtNasc, string cpf, int dias)
+        public static void AtualizarCliente(int idCliente, string nome, DateTime dtNasc, string cpf, int dias)
         {
             Context db = new Context();
-            try{
-            Cliente cliente = db.Clientes
-                .First(cliente => cliente.ClienteId == id);
-            cliente.Nome = nome;
+            try
+            {
+                Cliente cliente = db.Clientes.First(cliente => cliente.ClienteId == idCliente);
+                cliente.Nome = nome;
                 cliente.DtNasc = dtNasc;
                 cliente.Cpf = cpf;
                 cliente.Dias = dias;
-            db.SaveChanges();
-            }catch {
-                //trowerror
+                db.SaveChanges();
+            }
+            catch
+            {
+                throw new ArgumentException();
             }
         }
         public static void DeleteCliente(int id)
@@ -55,11 +56,14 @@ namespace Models {
                 try
                 {
                     db.SaveChanges();
-                } catch {
+                } catch 
+                    {
                     //throw error();
+                    }
+            }catch
+                {
+                    //throw error}
                 }
-                }catch{//throw error}
-            }
         }
 
         public void InserirLocacao (Locacao locacao) {

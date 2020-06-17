@@ -8,6 +8,8 @@ namespace Views
     {
         Label lblDetalhaCliente;
         Library.Botao btnLocacao;
+        Library.Botao btnAtualizar;
+        Library.Botao btnDeletar;
         Library.Botao.BtnVoltar btnVoltar;
         Label lblNome;
         Label lblCpf;
@@ -21,8 +23,6 @@ namespace Views
             this.idCliente=cliente.ClienteId;
             this.clienteLocal = cliente;
             this.Text = "Detalha Cliente";
-            this.BackColor = Color.Beige;
-            this.Size = new Size(300,400);
 
             lblDetalhaCliente = new Label();
             lblDetalhaCliente.Location = new Point(90,30);
@@ -55,11 +55,22 @@ namespace Views
             this.Controls.Add(lblDtNasc);
 
             btnLocacao = new Library.Botao();
-            btnLocacao.Size = new Size(130, 20);
             btnLocacao.Location = new Point(20, 300);
             btnLocacao.Text = "Nova Locação";
             this.Controls.Add(btnLocacao);
             btnLocacao.Click += new EventHandler(btnLocacaoClick);
+
+            btnAtualizar= new Library.Botao();
+            btnAtualizar.Location = new Point(20, 250);
+            btnAtualizar.Text = "Atualizar";
+            this.Controls.Add(btnAtualizar);
+            btnAtualizar.Click += new EventHandler(btnAtualizarClick);
+
+            btnDeletar= new Library.Botao();
+            btnDeletar.Location = new Point(170, 250);
+            btnDeletar.Text = "Deletar";
+            this.Controls.Add(btnDeletar);
+            btnDeletar.Click += new EventHandler(btnDeletarClick);
 
             btnVoltar = new Library.Botao.BtnVoltar(170,this,parent);
             this.Controls.Add(btnVoltar);

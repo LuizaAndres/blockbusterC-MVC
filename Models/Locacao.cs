@@ -29,7 +29,6 @@ namespace Models {
         }
         public void InserirFilme (Filme filme) {
             var db = new Context();
-
             FilmeLocacao filmeLocacao = new FilmeLocacao(){
                 FilmeId = filme.FilmeId,
                 LocacaoId = LocacaoId
