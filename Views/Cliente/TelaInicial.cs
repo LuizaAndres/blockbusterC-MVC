@@ -1,10 +1,9 @@
 using System;
 using System.Windows.Forms;
 
-
 namespace Views
 {
-    public partial class TelaInicial : Form
+    public partial class TelaInicial : FormBase
     {
         public TelaInicial()
         {
@@ -33,16 +32,6 @@ namespace Views
                 try{
                     ListaFilmes ListaFilmeClick = new ListaFilmes(this);
                     ListaFilmeClick.Show();
-                    this.Hide();
-                }catch(Exception err){
-                    MessageBox.Show(err.Message, "impossivel conectar ao banco", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            private void btnListaLocacoesClick(object sender, EventArgs e)
-            {
-                try{
-                    TodasLocacoes ListaLocacoesClick = new TodasLocacoes(this);
-                    ListaLocacoesClick.Show();
                     this.Hide();
                 }catch(Exception err){
                     MessageBox.Show(err.Message, "impossivel conectar ao banco", MessageBoxButtons.OK, MessageBoxIcon.Error);

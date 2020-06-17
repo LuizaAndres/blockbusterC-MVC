@@ -4,14 +4,15 @@ using System.Windows.Forms;
 using Models;
 namespace Views
 {
-    public class DetalhaFilme : Form {
+    public class DetalhaFilme : FormBase
+    {
         Form parent;
         Label lblNome;
         RichTextBox rtbSinopse;
         Label lblDtLancamento;
         Label lblValor;
         Label lblQtdEstoque;
-        Button btnVoltar;
+        Library.Botao.BtnVoltar btnVoltar;
         int idFilme;
         Filme filmeLocal;
         public DetalhaFilme(Form parent, Filme filme){
@@ -55,17 +56,8 @@ namespace Views
             lblQtdEstoque.Text = $"Estoque: {filme.QtdEstoque} unidades";
             this.Controls.Add(lblQtdEstoque);
 
-            btnVoltar = new Button();
-            btnVoltar.Size = new Size(80, 20);
-            btnVoltar.Location = new Point(170, 300);
-            btnVoltar.Text = "Voltar";
+            btnVoltar = new Library.Botao.BtnVoltar(170,this,parent);
             this.Controls.Add(btnVoltar);
-            btnVoltar.Click += new EventHandler(btnVoltarClick);  
-        }
-        private void btnVoltarClick(object sender, EventArgs e)
-        {
-            parent.Show();
-            this.Close();
         }
     }
 }

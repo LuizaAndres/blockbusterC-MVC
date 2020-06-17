@@ -11,3 +11,6 @@ Is necessary install this steps:
 5. `dotnet add package Microsoft.EntityFrameworkCore.Desing`
 6. `dotnet ef migrations add InitialDB`
 7. `dotnet ef database update`
+
+dotnet publish
+inno setup https://jrsoftware.org/

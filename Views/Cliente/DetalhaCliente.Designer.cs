@@ -4,11 +4,11 @@ using System.Windows.Forms;
 using Models;
 namespace Views
 {
-    public class DetalhaCliente : Form {
-        Form parent;
+    public partial class DetalhaCliente : FormBase
+    {
         Label lblDetalhaCliente;
-        Button btnLocacao;
-        Library.Button btnVoltar;
+        Library.Botao btnLocacao;
+        Library.Botao.BtnVoltar btnVoltar;
         Label lblNome;
         Label lblCpf;
         Label lblDiasDev;
@@ -16,7 +16,7 @@ namespace Views
         int idCliente;
         Cliente clienteLocal;
 
-        public DetalhaCliente(Form parent, Cliente cliente){
+        public void InitializeComponent(Form parent, Cliente cliente){
             this.parent = parent;
             this.idCliente=cliente.ClienteId;
             this.clienteLocal = cliente;
@@ -54,29 +54,15 @@ namespace Views
             lblDtNasc.Text = $"Data de Nascimento: {cliente.DtNasc.ToShortDateString()}";
             this.Controls.Add(lblDtNasc);
 
-            btnLocacao = new Button();
+            btnLocacao = new Library.Botao();
             btnLocacao.Size = new Size(130, 20);
             btnLocacao.Location = new Point(20, 300);
             btnLocacao.Text = "Nova Locação";
             this.Controls.Add(btnLocacao);
             btnLocacao.Click += new EventHandler(btnLocacaoClick);
 
-            btnVoltar = new Library.Button();
-            btnVoltar.Location = new Point(170, 300);
-            btnVoltar.Text = "Voltar";
+            btnVoltar = new Library.Botao.BtnVoltar(170,this,parent);
             this.Controls.Add(btnVoltar);
-            btnVoltar.Click += new EventHandler(btnVoltarClick);  
-        }
-       private void btnLocacaoClick(object sender, EventArgs e)
-        {
-            CadastraLocacao CadastraLocacaoClick = new CadastraLocacao(this,this.clienteLocal);
-            CadastraLocacaoClick.Show();
-            this.Hide();
-        }
-        private void btnVoltarClick(object sender, EventArgs e)
-        {
-            parent.Show();
-            this.Close();
         }
     }
 }

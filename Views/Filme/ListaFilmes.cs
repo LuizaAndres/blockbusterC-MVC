@@ -6,17 +6,16 @@ using Models;
 using static System.Windows.Forms.View;
 namespace Views
 {
-    public class ListaFilmes : Form {
+    public class ListaFilmes : FormBase
+    {
         Form parent;
         Label listaDeFilmes;
         ListView lvFilmes;
-        Button btnDetalhaFilme;
-        Button btnCancela;
+        Library.Botao btnDetalhaFilme;
+        Library.Botao.BtnVoltar btnCancela;
         public ListaFilmes(Form parent){
             this.parent = parent;
             this.Text = "Lista Filmes";
-            this.BackColor = Color.Beige;
-            this.Size = new Size(300,400);
 
             listaDeFilmes = new Label();
             listaDeFilmes.Location = new Point(100,30);
@@ -41,19 +40,14 @@ namespace Views
             lvFilmes.Columns.Add("Valor", -2, HorizontalAlignment.Left);
             this.Controls.Add(lvFilmes);
 
-            btnDetalhaFilme = new Button();
-            btnDetalhaFilme.Size = new Size(80, 20);
+            btnDetalhaFilme = new Library.Botao();
             btnDetalhaFilme.Location = new Point(20, 300);
             btnDetalhaFilme.Text = "Detalha";
             this.Controls.Add(btnDetalhaFilme);
             btnDetalhaFilme.Click += new EventHandler(btnDetalhaFilmeClick);
 
-            btnCancela = new Button();
-            btnCancela.Size = new Size(80, 20);
-            btnCancela.Location = new Point(180, 300);
-            btnCancela.Text = "Voltar";
+            btnCancela = new Library.Botao.BtnVoltar(180,this,parent);
             this.Controls.Add(btnCancela);
-            btnCancela.Click += new EventHandler(btnCancelaClick);
         }
          private void btnDetalhaFilmeClick(object sender, EventArgs e)
         {
@@ -67,10 +61,5 @@ namespace Views
                 MessageBox.Show(err.Message, "Selecione um filme", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         } 
-        private void btnCancelaClick(object sender, EventArgs e)
-        {
-            parent.Show();
-            this.Close();
-        }
     }
 }

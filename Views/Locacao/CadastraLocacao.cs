@@ -12,8 +12,8 @@ namespace Views
         Label lblCliente;
         Label lblFilme;
         ListView lvFilmes;
-        Button btnConfirma;
-        Button btnCancela;
+        Library.Botao btnConfirma;
+        Library.Botao.BtnVoltar btnCancela;
         Cliente clienteLocal;
         Locacao locacao;
         public CadastraLocacao(Form parent,Cliente clienteDetalhaCliente){
@@ -57,19 +57,14 @@ namespace Views
             lvFilmes.Columns.Add("Valor", -2, HorizontalAlignment.Left);
             this.Controls.Add(lvFilmes);
             
-            btnConfirma = new Button();
-            btnConfirma.Size = new Size(80, 20);
+            btnConfirma = new Library.Botao();
             btnConfirma.Location = new Point(20, 300);
             btnConfirma.Text = "Confirma";
             this.Controls.Add(btnConfirma);
             btnConfirma.Click += new EventHandler(btnConfirmaClick);
 
-            btnCancela = new Button();
-            btnCancela.Size = new Size(80, 20);
-            btnCancela.Location = new Point(120, 300);
-            btnCancela.Text = "Cancela";
+            btnCancela = new Library.Botao.BtnVoltar(120,this,parent);
             this.Controls.Add(btnCancela);
-            btnCancela.Click += new EventHandler(btnCancelaClick);
         }
         private void btnConfirmaClick(object sender, EventArgs e)
         {
@@ -103,10 +98,6 @@ namespace Views
             this.Close();
             parent.Show();
         }
-        private void btnCancelaClick(object sender, EventArgs e)
-        {
-            this.Close();
-            this.parent.Show();
-        }
+
     }
 }

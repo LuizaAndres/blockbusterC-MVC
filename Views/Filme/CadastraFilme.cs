@@ -5,7 +5,7 @@ using Controllers;
 
 namespace Views
 {
-    public class CadastraFilme : Form
+    public class CadastraFilme : FormBase
     {
         Form parent;
         Label lblCadastraFilme;
@@ -19,7 +19,7 @@ namespace Views
         Label lblEstoque;
         NumericUpDown nudEstoque;
         Button btnCadastra;
-        Button btnVoltar;
+        Library.Botao.BtnVoltar btnVoltar;
         public CadastraFilme(Form parent)
         {
             this.parent = parent;
@@ -99,12 +99,8 @@ namespace Views
             this.Controls.Add(btnCadastra);
             btnCadastra.Click += new EventHandler(btnCadastraClick);
 
-            btnVoltar = new Button();
-            btnVoltar.Size = new Size(80, 20);
-            btnVoltar.Location = new Point(130, 310);
-            btnVoltar.Text = "Voltar";
+            btnVoltar = new Library.Botao.BtnVoltar(130,this,parent);
             this.Controls.Add(btnVoltar);
-            btnVoltar.Click += new EventHandler(btnVoltarClick);
         }
         private void btnCadastraClick(object sender, EventArgs e)
         {

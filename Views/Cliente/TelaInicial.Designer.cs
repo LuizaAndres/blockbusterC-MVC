@@ -4,16 +4,15 @@ using System.Windows.Forms;
 using System.Drawing;
 namespace Views
 {
-    partial class TelaInicial : Form 
+    partial class TelaInicial : FormBase
     {
         private IContainer components = null;
         Label lblTitulo;
-        Button btnCadastraCliente;
-        Button btnListaClientes;
-        Button btnCadastraFilme;
-        Button btnListaFilmes;
-        Button btnListaLocacoes;
-        Button btnSair;
+        Library.Botao btnCadastraCliente;
+        Library.Botao btnListaClientes;
+        Library.Botao btnCadastraFilme;
+        Library.Botao btnListaFilmes;
+        Library.Botao btnSair;
 
         protected override void Dispose(bool disposing)
         {
@@ -23,56 +22,45 @@ namespace Views
             }
             base.Dispose(disposing);
         }
-            
         private void InitializeComponent()
         {
-            this.Text = "BlockBuster";
-            this.BackColor = Color.Beige;
-            this.Size = new Size(300,400);
-
+            this.Text = "BLOCKBUSTER";
             lblTitulo = new Label();
-            lblTitulo.Text = "Blockbuster";
+            lblTitulo.Text = "BLOCKBUSTER";
             lblTitulo.Location = new Point(110,10);
             this.Controls.Add(lblTitulo);
             
-            btnCadastraCliente = new Button();
+            btnCadastraCliente = new Library.Botao();
             btnCadastraCliente.Size = new Size(200, 20);
             btnCadastraCliente.Location = new Point(40, 50);
             btnCadastraCliente.Text = "Cadastrar Cliente";
             this.Controls.Add(btnCadastraCliente);
             btnCadastraCliente.Click += new EventHandler(btnCadastraClienteClick);
 
-            btnListaClientes = new Button();
+            btnListaClientes = new Library.Botao();
             btnListaClientes.Size = new Size(200, 20);
             btnListaClientes.Location = new Point(40, 80);
             btnListaClientes.Text = "Listar Clientes";
             this.Controls.Add(btnListaClientes);
             btnListaClientes.Click += new EventHandler(btnListaClientesClick);
 
-            btnCadastraFilme = new Button();
-            btnCadastraFilme.Size = new Size(200, 20);
+            btnCadastraFilme = new Library.Botao();
             btnCadastraFilme.Location = new Point(40, 110);
+            btnCadastraFilme.Size = new Size(200, 20);
             btnCadastraFilme.Text = "Cadastra Filme";
             this.Controls.Add(btnCadastraFilme);
             btnCadastraFilme.Click += new EventHandler(CadastraFilmeClick);
 
-            btnListaFilmes = new Button();
-            btnListaFilmes.Size = new Size(200, 20);
+            btnListaFilmes = new Library.Botao();
             btnListaFilmes.Location = new Point(40, 140);
+            btnListaFilmes.Size = new Size(200, 20);
             btnListaFilmes.Text = "Lista de Filmes";
             this.Controls.Add(btnListaFilmes);
             btnListaFilmes.Click += new EventHandler(btnListaFilmesClick);
 
-            btnListaLocacoes = new Button();
-            btnListaLocacoes.Size = new Size(200, 20);
-            btnListaLocacoes.Location = new Point(40, 170);
-            btnListaLocacoes.Text = "Todas as locações";
-            this.Controls.Add(btnListaLocacoes);
-            btnListaLocacoes.Click += new EventHandler(btnListaLocacoesClick);
-
-            btnSair = new Button();
-            btnSair.Size = new Size(200, 20);
+            btnSair = new Library.Botao();
             btnSair.Location = new Point(40, 300);
+            btnSair.Size = new Size(200, 20);
             btnSair.Text = "Sair";
             this.Controls.Add(btnSair);
             btnSair.Click += new EventHandler(btnSairClick);
